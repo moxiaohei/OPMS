@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opms.mappers.PmsGroupsPermissionMapper" >
+  <select id="listGroupsPermission" parameterType="java.lang.Long" resultType="java.lang.Long">
+  	select permissionid from pms_groups_permission where groupid=#{groupid}
+  </select>
+  <insert id="addGroupsPermission" parameterType="com.opms.entity.PmsGroupsPermission">
+  	insert into pms_groups_permission values(#{id},#{groupid},#{permissionid})
+  </insert>
+  <delete id="deleteGroupsPermission">
+  	delete from pms_groups_permission where groupid=#{0} and permissionid=#{1}
+  </delete>
+  <delete id="deleteGroupPermissionByGroupid">
+  	delete from pms_groups_permission where groupid=#{0}
+  </delete>
+</mapper>

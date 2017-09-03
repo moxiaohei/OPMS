@@ -1,0 +1,108 @@
+/* Code tidied up by ScrapBook */
+.dataTables_wrapper { position: relative; clear: both; }
+.dataTables_processing { position: absolute; top: 50%; left: 50%; width: 250px; height: 30px; margin-left: -125px; margin-top: -15px; padding: 14px 0px 2px; border: 1px solid rgb(221, 221, 221); text-align: center; color: rgb(153, 153, 153); font-size: 14px; background-color: white; }
+.dataTables_length { width: 40%; float: left; }
+.dataTables_filter { width: 50%; float: right; text-align: right; }
+.dataTables_info { width: 60%; float: left; }
+.dataTables_paginate { float: right; text-align: right; }
+.paginate_disabled_previous, .paginate_enabled_previous, .paginate_disabled_next, .paginate_enabled_next { height: 19px; float: left; cursor: pointer; color: rgb(17, 17, 17) !important; }
+.paginate_disabled_previous:hover, .paginate_enabled_previous:hover, .paginate_disabled_next:hover, .paginate_enabled_next:hover { text-decoration: none !important; }
+.paginate_disabled_previous:active, .paginate_enabled_previous:active, .paginate_disabled_next:active, .paginate_enabled_next:active { outline: medium none; }
+.paginate_disabled_previous, .paginate_disabled_next { color: rgb(102, 102, 102) !important; }
+.paginate_disabled_previous, .paginate_enabled_previous { padding-left: 23px; }
+.paginate_disabled_next, .paginate_enabled_next { padding-right: 23px; margin-left: 10px; }
+.paginate_disabled_previous { background: rgba(0, 0, 0, 0) url("back_disabled.png") no-repeat scroll left top; }
+.paginate_enabled_previous { background: rgba(0, 0, 0, 0) url("back_enabled.png") no-repeat scroll left top; }
+.paginate_enabled_previous:hover { background: rgba(0, 0, 0, 0) url("back_enabled_hover.png") no-repeat scroll left top; }
+.paginate_disabled_next { background: rgba(0, 0, 0, 0) url("forward_disabled.png") no-repeat scroll right top; }
+.paginate_enabled_next { background: rgba(0, 0, 0, 0) url("forward_enabled.png") no-repeat scroll right top; }
+.paginate_enabled_next:hover { background: rgba(0, 0, 0, 0) url("forward_enabled_hover.png") no-repeat scroll right top; }
+table.display { margin: 0px auto; clear: both; width: 100%; }
+table.display thead th { padding: 3px 18px 3px 10px; border-bottom: 1px solid black; font-weight: bold; cursor: pointer; }
+table.display tfoot th { padding: 3px 18px 3px 10px; border-top: 1px solid black; font-weight: bold; }
+table.display tr.heading2 td { border-bottom: 1px solid rgb(170, 170, 170); }
+table.display td { padding: 3px 10px; }
+table.display td.center { text-align: center; }
+.sorting_asc { background: rgba(0, 0, 0, 0) url("sort_asc.png") no-repeat scroll right center; }
+.sorting_desc { background: rgba(0, 0, 0, 0) url("sort_desc_001.png") no-repeat scroll right center; }
+.sorting { background: rgba(0, 0, 0, 0) url("sort_both_001.png") no-repeat scroll right center; }
+.sorting_asc_disabled { background: rgba(0, 0, 0, 0) url("sort_asc_disabled.png") no-repeat scroll right center; }
+.sorting_desc_disabled { background: rgba(0, 0, 0, 0) url("sort_desc_disabled.png") no-repeat scroll right center; }
+table.display thead th:active, table.display thead td:active { outline: medium none; }
+table.display tr.odd.gradeA { background-color: rgb(221, 255, 221); }
+table.display tr.even.gradeA { background-color: rgb(238, 255, 238); }
+table.display tr.odd.gradeC { background-color: rgb(221, 221, 255); }
+table.display tr.even.gradeC { background-color: rgb(238, 238, 255); }
+table.display tr.odd.gradeX { background-color: rgb(255, 221, 221); }
+table.display tr.even.gradeX { background-color: rgb(255, 238, 238); }
+table.display tr.odd.gradeU { background-color: rgb(221, 221, 221); }
+table.display tr.even.gradeU { background-color: rgb(238, 238, 238); }
+tr.odd { background-color: rgb(226, 228, 255); }
+tr.even { background-color: white; }
+.dataTables_scroll { clear: both; }
+.dataTables_scrollBody {  }
+.top, .bottom { padding: 15px; background-color: rgb(245, 245, 245); border: 1px solid rgb(204, 204, 204); }
+.top .dataTables_info { float: none; }
+.clear { clear: both; }
+.dataTables_empty { text-align: center; }
+tfoot input { margin: 0.5em 0px; width: 100%; color: rgb(68, 68, 68); }
+tfoot input.search_init { color: rgb(153, 153, 153); }
+td.group { background-color: rgb(209, 207, 208); border-bottom: 2px solid rgb(161, 155, 158); border-top: 2px solid rgb(161, 155, 158); }
+td.details { background-color: rgb(209, 207, 208); border: 2px solid rgb(161, 155, 158); }
+.example_alt_pagination div.dataTables_info { width: 40%; }
+.paging_full_numbers { width: 400px; height: 22px; line-height: 22px; }
+.paging_full_numbers a:active { outline: medium none; }
+.paging_full_numbers a:hover { text-decoration: none; }
+.paging_full_numbers a.paginate_button, .paging_full_numbers a.paginate_active { border: 1px solid rgb(170, 170, 170); border-radius: 5px; padding: 2px 5px; margin: 0px 3px; cursor: pointer; color: rgb(51, 51, 51) !important; }
+.paging_full_numbers a.paginate_button { background-color: rgb(221, 221, 221); }
+.paging_full_numbers a.paginate_button:hover { background-color: rgb(204, 204, 204); text-decoration: none !important; }
+.paging_full_numbers a.paginate_active { background-color: rgb(153, 179, 255); }
+table.display tr.even.row_selected td { background-color: rgb(176, 190, 217); }
+table.display tr.odd.row_selected td { background-color: rgb(159, 175, 209); }
+tr.odd td.sorting_1 { background-color: rgb(211, 214, 255); }
+tr.odd td.sorting_2 { background-color: rgb(218, 220, 255); }
+tr.odd td.sorting_3 { background-color: rgb(224, 226, 255); }
+tr.even td.sorting_1 { background-color: rgb(234, 235, 255); }
+tr.even td.sorting_2 { background-color: rgb(242, 243, 255); }
+tr.even td.sorting_3 { background-color: rgb(249, 249, 255); }
+tr.odd.gradeA td.sorting_1 { background-color: rgb(196, 255, 196); }
+tr.odd.gradeA td.sorting_2 { background-color: rgb(209, 255, 209); }
+tr.odd.gradeA td.sorting_3 { background-color: rgb(209, 255, 209); }
+tr.even.gradeA td.sorting_1 { background-color: rgb(213, 255, 213); }
+tr.even.gradeA td.sorting_2 { background-color: rgb(226, 255, 226); }
+tr.even.gradeA td.sorting_3 { background-color: rgb(226, 255, 226); }
+tr.odd.gradeC td.sorting_1 { background-color: rgb(196, 196, 255); }
+tr.odd.gradeC td.sorting_2 { background-color: rgb(209, 209, 255); }
+tr.odd.gradeC td.sorting_3 { background-color: rgb(209, 209, 255); }
+tr.even.gradeC td.sorting_1 { background-color: rgb(213, 213, 255); }
+tr.even.gradeC td.sorting_2 { background-color: rgb(226, 226, 255); }
+tr.even.gradeC td.sorting_3 { background-color: rgb(226, 226, 255); }
+tr.odd.gradeX td.sorting_1 { background-color: rgb(255, 196, 196); }
+tr.odd.gradeX td.sorting_2 { background-color: rgb(255, 209, 209); }
+tr.odd.gradeX td.sorting_3 { background-color: rgb(255, 209, 209); }
+tr.even.gradeX td.sorting_1 { background-color: rgb(255, 213, 213); }
+tr.even.gradeX td.sorting_2 { background-color: rgb(255, 226, 226); }
+tr.even.gradeX td.sorting_3 { background-color: rgb(255, 226, 226); }
+tr.odd.gradeU td.sorting_1 { background-color: rgb(196, 196, 196); }
+tr.odd.gradeU td.sorting_2 { background-color: rgb(209, 209, 209); }
+tr.odd.gradeU td.sorting_3 { background-color: rgb(209, 209, 209); }
+tr.even.gradeU td.sorting_1 { background-color: rgb(213, 213, 213); }
+tr.even.gradeU td.sorting_2 { background-color: rgb(226, 226, 226); }
+tr.even.gradeU td.sorting_3 { background-color: rgb(226, 226, 226); }
+.ex_highlight #example tbody tr.even:hover, #example tbody tr.even td.highlighted { background-color: rgb(236, 255, 179); }
+.ex_highlight #example tbody tr.odd:hover, #example tbody tr.odd td.highlighted { background-color: rgb(230, 255, 153); }
+.ex_highlight_row #example tr.even:hover { background-color: rgb(236, 255, 179); }
+.ex_highlight_row #example tr.even:hover td.sorting_1 { background-color: rgb(221, 255, 117); }
+.ex_highlight_row #example tr.even:hover td.sorting_2 { background-color: rgb(231, 255, 158); }
+.ex_highlight_row #example tr.even:hover td.sorting_3 { background-color: rgb(226, 255, 137); }
+.ex_highlight_row #example tr.odd:hover { background-color: rgb(230, 255, 153); }
+.ex_highlight_row #example tr.odd:hover td.sorting_1 { background-color: rgb(214, 255, 92); }
+.ex_highlight_row #example tr.odd:hover td.sorting_2 { background-color: rgb(224, 255, 132); }
+.ex_highlight_row #example tr.odd:hover td.sorting_3 { background-color: rgb(219, 255, 112); }
+table.KeyTable td { border: 3px solid transparent; }
+table.KeyTable td.focus { border: 3px solid rgb(51, 102, 255); }
+table.display tr.gradeA { background-color: rgb(238, 255, 238); }
+table.display tr.gradeC { background-color: rgb(221, 221, 255); }
+table.display tr.gradeX { background-color: rgb(255, 221, 221); }
+table.display tr.gradeU { background-color: rgb(221, 221, 221); }
+div.box { height: 100px; padding: 10px; overflow: auto; border: 1px solid rgb(128, 128, 255); background-color: rgb(229, 229, 255); }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opms.mappers.PmsUsersProfileMapper" >
+<!--查询Pms_user_profile的总条数  -->
+	<select id="countUser" resultType="INTEGER">
+  		select COUNT(*) from pms_users_profile;
+  	</select>
+  	<!--根据ID查询用户信息  -->
+  	<select   id="getPmsUsersProfileById"  parameterType="Long" resultType="PmsUsersProfile">
+  		SELECT * FROM pms_users_profile WHERE userid=#{user_id};
+  	</select>
+  	
+  	<!--更改用户信息  -->
+  	<update id="updatePmsUsersProfile" parameterType="com.opms.entity.PmsUsersProfile"> 
+  		 UPDATE pms_users_profile SET realname=#{realname},sex=#{sex},
+  		 birth=#{birth},email=#{email},webchat=#{webchat},qq=#{qq},
+  		 phone=#{phone},tel=#{tel},address=#{address},emercontact=#{emercontact},
+  		 emerphone=#{emerphone},departid=#{departid},positionid=#{positionid}
+			where userid=#{user_id}; 
+   </update>
+   <!-- 添加用户信息 -->
+  	 <insert id="addUsersProfile"  parameterType="PmsUsersProfile">
+   		INSERT INTO pms_users_profile(userid,realname,sex,birth,email,webchat,qq,phone,tel,
+   		address,emercontact,emerphone,departid,positionid,lognum)VALUES
+   		(#{user_id},#{realname},#{sex},#{birth},#{email},#{webchat},
+   		#{qq},#{phone},#{tel},#{address},#{emercontact},#{emerphone},
+   		#{departid},#{positionid},#{lognum}
+   		)
+   </insert> 
+    <!--更改用户登录次数  -->
+   <update id="updateDateLogin" parameterType="long"> 
+		 UPDATE pms_users_profile SET lognum=lognum+1 WHERE userid=#{userid}
+				
+   </update> 
+    <!--更改用户登录次时间 -->
+   <update id="updateDateLasted" parameterType="PmsUsersProfile"> 
+		 UPDATE pms_users_profile SET lasted=#{lasted}  WHERE userid=#{user_id}
+   </update> 
+</mapper>

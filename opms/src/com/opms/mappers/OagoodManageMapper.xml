@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opms.mappers.OagoodManageMapper">
+ <insert id="insertOagoodsManage" parameterType="com.opms.entity.PmsOagoods">
+   insert into pms_oagoods(oagoodid, userid, purpose, 
+      names, quantitys, content, 
+      picture, result, status, 
+      approverids, created, changed)
+    values (#{oagoodid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{purpose,jdbcType=VARCHAR}, 
+      #{names,jdbcType=VARCHAR}, #{quantitys,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{picture,jdbcType=VARCHAR}, #{result,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{approverid,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{changed,jdbcType=TIMESTAMP})
+ </insert>
+<select id="selectlistOagoodManage" resultType="com.opms.entity.PmsOagoods" parameterType="java.lang.Long">
+  select * from pms_oagoods where userid = #{userid,jdbcType=BIGINT}
+</select>
+<select id="selectOagoodManageCount" resultType="java.lang.Integer">
+ select count(*) from pms_oagoods
+</select> 
+ 
+ <select id="searchOagoods" resultType="com.opms.entity.PmsOagoods" parameterType="com.opms.entity.PmsOagoods">
+ select  * from pms_oagoods   
+    <trim prefix="where" suffixOverrides="and">
+    <if test="userid != null" >
+        userid=${userid} and
+      </if>
+    <if test="result != null" >
+        result=${result} and
+      </if>
+      <if test="status != null" >
+         status=${status} 
+      </if>    
+      </trim> 
+ 
+ 
+ </select>
+
+
+
+
+</mapper>

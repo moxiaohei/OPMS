@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opms.mappers.PmsAlbumsMapper" >
+  <resultMap id="BaseResultMap" type="com.opms.entity.PmsAlbums" >
+    <id column="albumid" property="albumid" jdbcType="BIGINT" />
+    <result column="userid" property="userid" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="viewnum" property="viewnum" jdbcType="INTEGER" />
+    <result column="comtnum" property="comtnum" jdbcType="INTEGER" />
+    <result column="laudnum" property="laudnum" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    albumid, userid, title, picture, keywords, summary, viewnum, comtnum, laudnum, created, 
+    status
+  </sql>
+  <!-- 查询相片的所有信息 -->
+  <select id="listAlbums" resultType="com.opms.entity.PmsAlbums">
+  	select * from pms_albums 
+  </select>
+  <select id="listAlbumsByUserid" parameterType="java.lang.Long" resultType="com.opms.entity.PmsAlbums" >
+  	select * from pms_albums where 1=1 
+  	<if test="_parameter!=null">
+		and userid = #{userid}
+  	</if>
+  </select>
+  
+  <!-- 查询相片的一条信息 -->
+  <select id="getAlbums" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pms_albums
+    where albumid = #{albumid,jdbcType=BIGINT}
+  </select>
+  <!-- 根据相片ID删除相片信息 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pms_albums
+    where albumid = #{albumid,jdbcType=BIGINT}
+  </delete>
+  <!-- 上传相片 -->
+  <insert id="insertAlbums" parameterType="com.opms.entity.PmsAlbums" >
+    insert into pms_albums (albumid, userid, title, 
+      picture, keywords, summary, 
+      viewnum, comtnum, laudnum, 
+      created, status)
+    values (#{albumid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, 
+      #{picture,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, 
+      #{viewnum,jdbcType=INTEGER}, #{comtnum,jdbcType=INTEGER}, #{laudnum,jdbcType=INTEGER}, 
+      #{created,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER})
+  </insert>
+  <!-- 根据相片ID更新相片信息 -->
+  <update id="updateByPrimaryKey" parameterType="com.opms.entity.PmsAlbums" >
+    update pms_albums
+    set userid = #{userid,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      viewnum = #{viewnum,jdbcType=INTEGER},
+      comtnum = #{comtnum,jdbcType=INTEGER},
+      laudnum = #{laudnum,jdbcType=INTEGER},
+      created = #{created,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER}
+    where albumid = #{albumid,jdbcType=BIGINT}
+  </update>
+  <!-- 根据相片id修改查看次数 -->
+  <update id="updateViewnum" parameterType="com.opms.entity.PmsAlbums">
+   update pms_albums set viewnum = #{viewnum,jdbcType=INTEGER} where albumid = #{albumid,jdbcType=BIGINT}
+  </update>
+  <!-- 根据相片id修改标题，说明，状态 -->
+  <update id="updateAlbums" parameterType="com.opms.entity.PmsAlbums">
+  update pms_albums set title = #{title,jdbcType=VARCHAR},summary = #{summary,jdbcType=VARCHAR},
+  status = #{status,jdbcType=INTEGER} where albumid = #{albumid,jdbcType=BIGINT}
+  </update>
+  <!-- 根据相片id修改点赞次数 -->
+   <update id="updateLaudnum" parameterType="com.opms.entity.PmsAlbums">
+   update pms_albums set laudnum = #{laudnum,jdbcType=INTEGER} where albumid = #{albumid,jdbcType=BIGINT}
+  </update>
+</mapper>

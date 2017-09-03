@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opms.mappers.PmsCheckworksMapper" >
+  <resultMap id="Checkworkandrealname" type="com.opms.entity.PmsCheckworkandrealname" >
+    <id column="checkid" property="checkid" jdbcType="BIGINT" />
+    <result column="userid" property="userid" jdbcType="BIGINT" />
+    <result column="group_concat(clock separator '~')" property="clock"/>
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="DATE" />
+    <result column="realname" property="realname" jdbcType="VARCHAR"/>
+  </resultMap>
+  <resultMap id="BaseResultMap" type="com.opms.entity.PmsCheckworks" >
+    <id column="checkid" property="checkid" jdbcType="BIGINT" />
+    <result column="userid" property="userid" jdbcType="BIGINT" />
+    <result column="clock" property="clock" jdbcType="TIME" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="DATE" />
+  </resultMap>
+  <insert id="insertCheckwork" parameterType="com.opms.entity.PmsCheckworks">
+    insert into pms_checkworks (checkid,userid,clock,type,ip,created) values 
+    (#{checkid,jdbcType=BIGINT},#{userid,jdbcType=BIGINT},#{clock,jdbcType=TIME},#{type,jdbcType=INTEGER},#{ip,jdbcType=VARCHAR},#{created,jdbcType=DATE})
+  </insert>
+  <!-- 根据userid查询考勤表 -->
+  <select id="listCheckworkbyPmsCheckworks" parameterType="com.opms.entity.PmsCheckworks" resultMap="BaseResultMap">
+  	select * from pms_checkworks where userid = #{userid,jdbcType=BIGINT} and 
+  	DATE_FORMAT(created,'%Y-%m')=DATE_FORMAT(#{created,jdbcType=DATE},'%Y-%m') Order By created Desc
+  </select>
+  <!-- 查询全部用户的考勤状态 -->
+  <select id="listAllCheckwork" resultMap="Checkworkandrealname" parameterType="com.opms.entity.PmsCheckworks">
+  	 select ck.checkid,ck.userid,group_concat(clock separator '~'),ck.type,ck.ip,ck.created,usp.realname from 
+  	 pms_checkworks ck inner join pms_users_profile usp on ck.userid=usp.userid where 
+  	 DATE_FORMAT(ck.created,'%Y-%m')= DATE_FORMAT(#{created,jdbcType=DATE},'%Y-%m') 
+  	 group by ck.created Order By ck.created Desc;
+  </select>
+  <!-- 查询同一天打卡信息 -->
+  <select id="countCheckwork" parameterType="com.opms.entity.PmsCheckworks" resultMap="BaseResultMap" >
+  	select * from pms_checkworks where created=#{created,jdbcType=DATE} and userid=#{userid,jdbcType=BIGINT};
+  </select>
+  <!-- 查询本月正常 迟到 早退 次数 -->
+  <select id="typecountCheckwork" parameterType="com.opms.entity.PmsCheckworks" resultMap="counttype">
+  	select count(type),type from pms_checkworks where userid=#{userid,jdbcType=BIGINT} and 
+  	DATE_FORMAT(created,'%Y-%m')=DATE_FORMAT(#{created,jdbcType=DATE},'%Y-%m') group by type;
+  </select>
+  <resultMap type="com.opms.entity.Subtotal" id="counttype">
+    <result column="count(type)" property="count"/>
+    <result column="type" property="type"/>
+  </resultMap>
+  <!-- 查询本月出勤天数 -->
+  <select id="workdays" parameterType="com.opms.entity.PmsCheckworks" resultType="java.lang.Float">
+  	select count(*)/2 from pms_checkworks where userid=#{userid,jdbcType=BIGINT} and 
+  	DATE_FORMAT(created,'%Y-%m')=DATE_FORMAT(#{created,jdbcType=DATE},'%Y-%m');
+  </select>
+  <!-- 根据userid(用户id)和(type)类型查询考勤表 -->
+  <select id="listCheckworkbytype" parameterType="com.opms.entity.PmsCheckworks" resultMap="BaseResultMap">
+  	select *from pms_checkworks where userid=#{userid,jdbcType=BIGINT} and type=#{type,jdbcType=INTEGER} 
+  	and DATE_FORMAT(created,'%Y-%m')=DATE_FORMAT(#{created,jdbcType=DATE},'%Y-%m') Order By created Desc
+  </select>
+  <!--  <select id="listCheckworkbycreated" parameterType="com.opms.entity.PmsCheckworks" resultMap="BaseResultMap">
+  	select * from pms_checkworks where DATE_FORMAT(created,'%Y-%m')=DATE_FORMAT(#{created,jdbcType=DATE},'%Y-%m')
+  </select>-->
+   <!-- 根据日期查询全部用户的考勤状态 -->
+  <select id="listAllCheckworkbycreated" resultMap="Checkworkandrealname" parameterType="com.opms.entity.PmsCheckworks">
+  	 select ck.checkid,ck.userid,group_concat(clock separator '~'),ck.type,ck.ip,ck.created,usp.realname from 
+  	 pms_checkworks ck inner join pms_users_profile usp on ck.userid=usp.userid  where 
+  	 DATE_FORMAT(ck.created,'%Y-%m')= DATE_FORMAT(#{created,jdbcType=DATE},'%Y-%m') 
+  	 and ck.userid=#{userid,jdbcType=BIGINT} group by ck.created Order By ck.created Desc;
+  </select>
+  
+  <!-- 查询全部用户用户名 -->
+  <select id="listusername" resultType="com.opms.entity.PmsUsers">
+  	select userid,username from pms_users
+  </select>
+</mapper>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opms.mappers.PmsExpensesMapper" >
+ 
+ 
+ 
+  <!-- 获取所有报销事件信息 -->
+  <select id="selectAllExpense" resultType="com.opms.entity.PmsExpenses" parameterType="com.opms.entity.PmsExpenses" >
+  select * from pms_expenses where userid=#{userid}
+  </select>
+  <!-- 按条件搜索报销信息 -->
+  <select id="listSearchExpense" resultType="com.opms.entity.PmsExpenses" parameterType="com.opms.entity.PmsExpenses" >
+  select  * from pms_expenses   
+    <trim prefix="where" suffixOverrides="and">
+    <if test="userid != null" >
+        userid=${userid} and
+      </if>
+    <if test="result != null" >
+        result=${result} and
+      </if>
+      <if test="status != null" >
+         status=${status} 
+      </if>    
+      </trim> 
+  </select>
+  <!-- 获取未审批报销事件 -->
+  <select id="listApprovalExpense" resultType="com.opms.entity.PmsExpenses" parameterType="com.opms.entity.PmsExpenses"  >
+  select  *  from pms_expenses   where userid = #{userid,jdbcType=BIGINT}  
+    and status = #{status,jdbcType=INTEGER} and result is null 
+<!--     #{result,jdbcType=INTEGER}, -->
+  
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <select id="selectByPrimaryKey" resultType="com.opms.entity.PmsExpenses" parameterType="java.lang.Long" >
+    select * from pms_expenses
+    where expenseid = #{expenseid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pms_expenses
+    where expenseid = #{expenseid,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.opms.entity.PmsExpenses" >
+    insert into pms_expenses (expenseid, userid, amounts, 
+      types, contents, total, 
+      picture, result, status, 
+      approverids, created, changed
+      )
+    values (#{expenseid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{amounts,jdbcType=VARCHAR}, 
+      #{types,jdbcType=VARCHAR}, #{contents,jdbcType=VARCHAR}, #{total,jdbcType=VARCHAR}, 
+      #{picture,jdbcType=VARCHAR}, #{result,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{approverids,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{changed,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.opms.entity.PmsExpenses" >
+    insert into pms_expenses
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="expenseid != null" >
+        expenseid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="amounts != null" >
+        amounts,
+      </if>
+      <if test="types != null" >
+        types,
+      </if>
+      <if test="contents != null" >
+        contents,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="approverids != null" >
+        approverids,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="changed != null" >
+        changed,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="expenseid != null" >
+        #{expenseid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="amounts != null" >
+        #{amounts,jdbcType=VARCHAR},
+      </if>
+      <if test="types != null" >
+        #{types,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null" >
+        #{contents,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="approverids != null" >
+        #{approverids,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changed != null" >
+        #{changed,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+ 
+  <update id="updateByPrimaryKeySelective" parameterType="com.opms.entity.PmsExpenses" >
+    update pms_expenses
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="amounts != null" >
+        amounts = #{amounts,jdbcType=VARCHAR},
+      </if>
+      <if test="types != null" >
+        types = #{types,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null" >
+        contents = #{contents,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="approverids != null" >
+        approverids = #{approverids,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changed != null" >
+        changed = #{changed,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where expenseid = #{expenseid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.opms.entity.PmsExpenses" >
+    update pms_expenses
+    set userid = #{userid,jdbcType=BIGINT},
+      amounts = #{amounts,jdbcType=VARCHAR},
+      types = #{types,jdbcType=VARCHAR},
+      contents = #{contents,jdbcType=VARCHAR},
+      total = #{total,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      result = #{result,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      approverids = #{approverids,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      changed = #{changed,jdbcType=TIMESTAMP}
+    where expenseid = #{expenseid,jdbcType=BIGINT}
+  </update>
+</mapper>

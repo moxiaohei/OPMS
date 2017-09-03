@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.opms.mappers.PmsPositionsMapper" >
+<!--查询职位列表  -->
+	<select id="listPmsPositions" resultType="com.opms.entity.PmsPositions">
+		SELECT * from pms_positions;
+  	</select>
+<!--查询未被屏蔽职位列表  -->
+	<select id="listPmsPositions1" resultType="com.opms.entity.PmsPositions">
+		SELECT * from pms_positions WHERE status=1;
+  	</select>
+  	<!--根据ID去查询职位信息  -->
+	<select id="getPmsPositionsById" parameterType="Long" resultType="PmsPositions">
+		SELECT * from pms_positions WHERE positionid=#{positionid};
+  	</select>
+  	<!--更改职称信息  -->
+  	  <update id="updatePosition" parameterType="com.opms.entity.PmsPositions"> 
+  		 UPDATE pms_positions SET description=#{description},name=#{name}
+			where positionid=#{positionid}; 
+   </update>
+    <!-- 添加职称信息 -->
+    <insert id="addPosition"  parameterType="PmsPositions">
+   		INSERT INTO pms_positions(positionid,name,description,status) VALUES
+   		(#{positionid},#{name},#{description},#{status})
+   </insert>  
+   
+   <!-- 对职位信息带状态查询 -->
+	<select id="searchPositionform" resultType="PmsPositions" parameterType="PmsPositions"><!-- 便利user -->
+  		select  * from pms_positions pp
+		<where>
+			<if test="status !=null and status !='' ">
+				and pp.status=#{status}
+			</if>
+			<if test="name !=null and name !='' ">
+				AND pp.name like CONCAT('%',#{name},'%')
+			</if>
+			
+		</where>
+  		
+  	</select> 
+  	<!--更改职位状态  -->
+  	<update id="updateStatusPosition" parameterType="com.opms.entity.PmsPositions"> 
+		 UPDATE pms_positions SET status=#{status}
+		WHERE positionid=#{positionid}
+   </update> 
+   
+   
+   
+   <!--便利得到权限  -->
+    <select id="listPermissionManage"  resultType="PmsPermissions">
+		SELECT pp2.name as parentName,pp1.parentid as parentid,pp1.permissionid,
+		pp1.name,pp1.ename FROM pms_permissions pp1 INNER JOIN pms_permissions pp2 
+		ON pp1.parentid=pp2.permissionid
+	</select>
+	<!--根据ID删除权限  -->
+	<delete id="deletePermission" parameterType="long">
+		DELETE FROM pms_permissions WHERE permissionid=#{ids}
+	</delete>
+	
+	<!--根据id获取权限数据  -->
+	<select id="getEditPermissionManage" parameterType="long" resultType="PmsPermissions">
+		SELECT pp2.name as parentName,pp1.parentid as parentid,pp1.permissionid,pp1.name,pp1.ename,pp1.nav,pp1.type,pp1.weight,pp1.icon
+		FROM pms_permissions pp1 INNER JOIN pms_permissions pp2 ON pp1.parentid=pp2.permissionid
+		WHERE pp1.permissionid=#{permissionid}
+	</select>
+	<!--获取权限的父类列表  -->
+	<select id="listPermissionParent" resultType="PmsPermissions">
+		SELECT DISTINCT name,permissionid FROM pms_permissions pp1 WHERE pp1.permissionid IN (select parentid FROM pms_permissions);
+		
+	</select>
+	<!--获取权限的英文名 -->
+	<select id="getPermissionEname" resultType="PmsPermissions">
+		SELECT ename,permissionid FROM pms_permissions
+	</select>
+	<select id="searchPermission" resultType="PmsPermissions">
+		SELECT pp2.name as parentName,pp1.parentid as parentid,pp1.permissionid,
+		pp1.name,pp1.ename FROM pms_permissions pp1 INNER JOIN pms_permissions pp2 
+		ON pp1.parentid=pp2.permissionid
+		<where>
+			<if test="parentid !=null and parentid !='' ">
+				and pp1.parentid=#{parentid}
+			</if>
+			<if test="name !=null and name !='' ">
+				AND pp1.name like CONCAT('%',#{name},'%')
+			</if>
+			
+		</where>
+	</select>
+	
+	<!--更改权限信息  -->
+	<update id="updatePermission" parameterType="PmsPermissions"> 
+		 UPDATE pms_permissions SET parentid=#{parentid},name=#{name},ename=#{ename},
+		 icon=#{icon},type=#{type},weight=#{weight}
+		WHERE permissionid=#{permissionid}
+   </update>
+	<!-- 添加权限信息 -->
+    <insert id="addPermission"  parameterType="PmsPermissions">
+   		INSERT INTO pms_permissions(permissionid,parentid,name,ename,icon,type,weight) VALUES
+   		(#{permissionid},#{parentid},#{name},#{ename},#{icon},#{type},#{weight})
+   </insert> 
+  	<select id="listPermissionManageSon" parameterType="java.lang.Long" resultType="PmsPermissions">
+		SELECT * FROM pms_permissions where parentid=#{0};
+	</select>
+  	<select id="listPmsPermissionsEname" parameterType="java.lang.Long" resultType="PmsPermissions">
+		SELECT ename FROM pms_permissions WHERE permissionid IN(
+		SELECT DISTINCT pgp.permissionid FROM pms_groups_user pgu INNER JOIN pms_groups_permission pgp ON pgu.groupid=pgp.groupid WHERE
+		 pgu.userid=#{userid})
+	</select>
+</mapper>

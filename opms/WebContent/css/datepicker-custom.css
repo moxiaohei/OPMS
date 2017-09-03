@@ -1,0 +1,22 @@
+/* Code tidied up by ScrapBook */
+.datepicker { z-index: 1051; top: 0px; left: 0px; padding: 10px; margin-top: 1px; border-radius: 4px; background: rgb(101, 206, 167) none repeat scroll 0% 0% !important; border-color: rgb(101, 206, 167) !important; color: rgb(255, 255, 255); }
+.datepicker::before { content: ""; display: inline-block; border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 7px solid rgb(101, 206, 167); position: absolute; top: -7px; left: 6px; }
+.datepicker::after { content: ""; display: inline-block; border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 6px solid rgb(101, 206, 167); position: absolute; top: -6px; left: 7px; }
+.datepicker > div { display: none; }
+.datepicker table { width: 100%; margin: 0px; }
+.datepicker td, .datepicker th { text-align: center; width: 20px; height: 20px; border-radius: 4px; }
+.datepicker td.day:hover { background: rgb(66, 134, 109) none repeat scroll 0% 0%; cursor: pointer; }
+.datepicker td.old, .datepicker td.new { color: rgb(38, 78, 63); }
+.datepicker td.active, .datepicker td.active:hover, .datepicker td span.active { background-color: rgb(66, 134, 109); background-image: -moz-linear-gradient(center top , rgb(66, 134, 109), rgb(66, 134, 109)); background-repeat: repeat-x; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); color: rgb(255, 255, 255); text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25); }
+.datepicker td.active:hover, .datepicker td.active:hover:hover, .datepicker td.active:active, .datepicker td.active:hover:active, .datepicker td.active.active, .datepicker td.active.active:hover, .datepicker td.active.disabled, .datepicker td.active.disabled:hover, .datepicker td.active[disabled], .datepicker td.active[disabled]:hover { background-color: rgb(66, 134, 109); color: rgb(255, 255, 255); }
+.datepicker td.active:active, .datepicker td.active:hover:active, .datepicker td.active.active, .datepicker td.active.active:hover { color: rgb(255, 255, 255); }
+.datepicker td span { display: block; width: 47px; height: 54px; line-height: 54px; float: left; margin: 2px; cursor: pointer; border-radius: 4px; }
+.datepicker td span:hover { background: rgb(66, 134, 109) none repeat scroll 0% 0%; color: rgb(255, 255, 255); }
+.datepicker td span.active:hover, .datepicker td span.active:active, .datepicker td span.active.active, .datepicker td span.active.disabled, .datepicker td span.active[disabled] { background-color: rgb(66, 134, 109); color: rgb(255, 255, 255); }
+.datepicker td span.active:active, .datepicker td span.active.active { color: rgb(255, 255, 255); }
+.datepicker td span.old { color: rgb(255, 255, 255); }
+.datepicker th.switch { width: 145px; }
+.datepicker th.next, .datepicker th.prev { font-size: 19.5px; }
+.datepicker thead tr:first-child th { cursor: pointer; }
+.datepicker thead tr:first-child th:hover { background: rgb(66, 134, 109) none repeat scroll 0% 0%; }
+.input-append.date .add-on i, .input-prepend.date .add-on i { display: block; cursor: pointer; width: 16px; height: 16px; }

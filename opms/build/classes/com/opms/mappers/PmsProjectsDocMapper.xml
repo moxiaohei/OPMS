@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opms.mappers.PmsProjectsDocMapper" >
+  <resultMap id="BaseResultMap" type="com.opms.entity.PmsProjectsDoc" >
+    <id column="docid" property="docid" jdbcType="BIGINT" />
+    <result column="projectid" property="projectid" jdbcType="BIGINT" />
+    <result column="userid" property="userid" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="attachment" property="attachment" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="changed" property="changed" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.opms.entity.PmsProjectsDoc" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    docid, projectid, userid, title, keyword, sort, url, attachment, created, changed
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  
+  <!-- 查询项目所有文档信息 -->
+  <select id="selectAllPmsProjectsDoc"  resultType="com.opms.entity.PmsProjectsDoc">
+	select ppd.*,pu.username from pms_projects_doc ppd join pms_users pu on ppd.userid = pu.userid where 1=1 
+	<if test="_parameter!=null">
+		and projectid = #{projectid} 
+	</if>
+  </select>
+  <!-- 根据文档ID查询文档信息   -->
+  <select id="getPmsProjectsDoc" parameterType="java.lang.Long" resultType="com.opms.entity.PmsProjectsDoc">
+  	 select ppd.*,pu.username from pms_projects_doc ppd join pms_users pu on ppd.userid = pu.userid where 1=1  
+	<if test="_parameter!=null">
+	   and docid = #{docid} 
+	</if>
+  </select>
+  <!-- 根据文档ID删除文档信息 -->
+  <delete id="deleteDocByPrimaryKey" parameterType="java.lang.Long" >
+   	delete from pms_projects_doc
+    where docid = #{docid,jdbcType=BIGINT}
+  </delete>
+  <!-- 根据项目ID添加文档信息   -->
+  <insert id="insertPmsProjectsDoc" parameterType="com.opms.entity.PmsProjectsDoc" >
+  	insert into pms_projects_doc values(#{docid}, #{projectid},#{userid}, 
+      #{title}, #{keyword},#{sort}, #{content},#{url}, #{attachment}, #{created}, 
+      #{changed}) 
+  </insert>
+  <!-- 根据文档ID更新文档信息 -->
+  <update id="updateDocByPrimaryKey" parameterType="com.opms.entity.PmsProjectsDoc" >
+    update pms_projects_doc
+    set projectid = #{projectid,jdbcType=BIGINT},
+      userid = #{userid,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      keyword = #{keyword,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=BIGINT},
+      content = #{content,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      attachment = #{attachment,jdbcType=VARCHAR},
+      changed = #{changed,jdbcType=TIMESTAMP}
+    where docid = #{docid,jdbcType=BIGINT}
+  </update>
+  <!-- 模糊查询 -->
+  <select id="searchPmsProjectsDoc" resultType="com.opms.entity.PmsProjectsDoc">
+	select ppd.*,pu.username from pms_projects_doc ppd join pms_users pu on ppd.userid = pu.userid 
+	<where>
+		<if test="sort!=0">
+			ppd.sort like '%${sort}%' 
+		</if>
+		<if test="title!=null">
+			 AND ppd.title like '%${title}%' 
+		</if>
+		<if test="projectid!=0">
+			 AND ppd.projectid=${projectid}
+		</if>
+	</where>
+  </select>
+  
+  
+</mapper>

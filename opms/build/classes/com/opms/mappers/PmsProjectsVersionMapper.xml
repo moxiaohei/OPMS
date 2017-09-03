@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opms.mappers.PmsProjectsVersionMapper" >
+  <resultMap id="BaseResultMap" type="com.opms.entity.PmsProjectsVersion" >
+    <id column="versionid" property="versionid" jdbcType="BIGINT" />
+    <result column="projectid" property="projectid" jdbcType="BIGINT" />
+    <result column="userid" property="userid" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="versioned" property="versioned" jdbcType="INTEGER" />
+    <result column="sourceurl" property="sourceurl" jdbcType="VARCHAR" />
+    <result column="downurl" property="downurl" jdbcType="VARCHAR" />
+    <result column="attachment" property="attachment" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="changed" property="changed" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.opms.entity.PmsProjectsVersion" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    versionid, projectid, userid, title, versioned, sourceurl, downurl, attachment, created, 
+    changed
+  </sql>
+  
+  <!-- 查询项目所有版本信息 -->
+  <select id="selectAllPmsProjectsVersion"  resultType="com.opms.entity.PmsProjectsVersion">
+	select ppv.*,pu.username from pms_projects_version ppv join pms_users pu on ppv.userid = pu.userid where 1=1 
+	<if test="_parameter!=null">
+		and projectid = #{projectid} 
+	</if>
+  </select>
+  <!-- 根据版本ID查询版本信息   -->
+  <select id="getPmsProjectsVersion" parameterType="java.lang.Long" resultType="com.opms.entity.PmsProjectsVersion">
+  	 select ppv.*,pu.username from pms_projects_version ppv join pms_users pu on ppv.userid = pu.userid where 1=1  
+	<if test="_parameter!=null">
+	   and versionid = #{versionid} 
+	</if>
+  </select>
+  <!-- 根据版本ID删除版本信息 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pms_projects_version
+    where versionid = #{versionid,jdbcType=BIGINT}
+  </delete>
+  <!-- 根据项目ID添加版本信息 -->
+  <insert id="insertPmsProjectsVersion" parameterType="com.opms.entity.PmsProjectsVersion" >
+  	insert into pms_projects_version values(#{versionid}, #{projectid},#{userid}, 
+      #{title}, #{versioned},#{content}, #{sourceurl},#{downurl}, #{attachment}, #{created}, 
+      #{changed}) 
+  </insert>
+  <!-- 根据版本ID更新版本信息 -->
+  <update id="updateByPrimaryKey" parameterType="com.opms.entity.PmsProjectsVersion" >
+    update pms_projects_version
+    set projectid = #{projectid,jdbcType=BIGINT},
+      userid = #{userid,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      versioned = #{versioned,jdbcType=INTEGER},
+      sourceurl = #{sourceurl,jdbcType=VARCHAR},
+      downurl = #{downurl,jdbcType=VARCHAR},
+      attachment = #{attachment,jdbcType=VARCHAR},
+      changed = #{changed,jdbcType=TIMESTAMP}
+    where versionid = #{versionid,jdbcType=BIGINT}
+  </update>
+  <!-- 模糊查询 -->
+  <select id="searchPmsProjectsVersion" resultType="com.opms.entity.PmsProjectsVersion">
+	select ppv.*,pu.username from pms_projects_version ppv join pms_users pu on ppv.userid = pu.userid 
+	<where>
+		<if test="title!=null">
+			 ppv.title like '%${title}%' 
+		</if>
+		<if test="projectid!=0">
+			 AND ppv.projectid=${projectid}
+		</if>
+	</where>
+  </select>
+</mapper>

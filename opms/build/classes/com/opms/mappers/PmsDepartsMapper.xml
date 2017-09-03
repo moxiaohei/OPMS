@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opms.mappers.PmsDepartsMapper" >
+<!--查询所有的部门信息  -->
+	<select id="listPmsDeparts" resultType="com.opms.entity.PmsDeparts">
+		SELECT * FROM pms_departs;
+	</select>
+	<!--查询未被屏蔽部门信息  -->
+	<select id="listPmsDeparts1" resultType="com.opms.entity.PmsDeparts">
+		SELECT * FROM pms_departs WHERE status=1
+	</select>
+	<select id="getpmsDepartsById"  parameterType="Long" resultType="com.opms.entity.PmsDeparts">
+		SELECT * FROM pms_departs WHERE departid=#{departid};
+	</select>
+	<!--author:liyanpeng disc:select the number of depart -->
+	<select id="countDeparts" resultType="int">
+		select count(*) from pms_departs
+	</select>
+	<!-- author:liyanpeng desc:update the department set the new name or new disription -->
+	<update id="updateDepart" parameterType="com.opms.entity.PmsDeparts">
+		update pms_departs set name=#{name},description=#{description} where departid=#{departid}
+	</update>
+	<!-- author:liyanpeng desc:update the status of department by id -->
+	<update id="updateDepartStatus">
+		update pms_departs set status=#{1} where departid=#{0}
+	</update>
+	<!-- author:liyanpeng desc:insert a department to the table -->
+	<insert id="addDepartment" parameterType="com.opms.entity.PmsDeparts">
+		insert into pms_departs values(#{departid},#{name},#{description},#{status})
+	</insert>
+	
+	<!-- author:liyanpeng desc: search departments from table by keyword-->
+	<select id="searchDeparts"  parameterType="com.opms.entity.PmsDeparts" resultType="com.opms.entity.PmsDeparts">
+		select * from pms_departs 
+		<where>
+		<if test="name!=null and name!=''">
+			name like concat('%',#{name},'%')
+		</if>
+		<if test="status!=0">
+			and status=#{status}
+		</if>
+		</where>
+	</select>
+	<select id="isExistName" resultType="java.lang.Integer">
+		select count(*) from pms_departs where name=#{0}
+	</select>
+	<select id="getDeptByUserid" parameterType="java.lang.Long" resultType="com.opms.entity.PmsDeparts">
+		select * from pms_departs where departid=(select departid from pms_users_profile where userid=#{0})
+	</select>
+	
+</mapper>

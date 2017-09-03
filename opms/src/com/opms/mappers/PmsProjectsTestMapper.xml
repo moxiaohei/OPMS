@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opms.mappers.PmsProjectsTestMapper">
+	<resultMap id="BaseResultMap" type="com.opms.entity.PmsProjectsTest">
+		<id column="testid" property="testid" jdbcType="BIGINT" />
+		<result column="taskid" property="taskid" jdbcType="BIGINT" />
+		<result column="needsid" property="needsid" jdbcType="BIGINT" />
+		<result column="userid" property="userid" jdbcType="BIGINT" />
+		<result column="projectid" property="projectid" jdbcType="BIGINT" />
+		<result column="acceptid" property="acceptid" jdbcType="BIGINT" />
+		<result column="completeid" property="completeid" jdbcType="BIGINT" />
+		<result column="ccid" property="ccid" jdbcType="BIGINT" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="level" property="level" jdbcType="INTEGER" />
+		<result column="os" property="os" jdbcType="VARCHAR" />
+		<result column="browser" property="browser" jdbcType="VARCHAR" />
+		<result column="attachment" property="attachment" jdbcType="VARCHAR" />
+		<result column="completed" property="completed" jdbcType="TIMESTAMP" />
+		<result column="created" property="created" jdbcType="TIMESTAMP" />
+		<result column="changed" property="changed" jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="bugdesc" property="bugdesc" jdbcType="LONGVARCHAR" />
+		<result column="needname" property="needname" jdbcType="LONGVARCHAR" />
+		<result column="taskname" property="taskname" jdbcType="LONGVARCHAR" />
+	</resultMap>
+
+	<select id="listPmsProjectsTest" resultMap="BaseResultMap"
+		parameterType="long">
+		select * from pms_projects_test where
+		projectid=#{projectid}
+	</select>
+
+
+	<select id="searchByAppoint" resultMap="BaseResultMap"
+		parameterType="long">
+		select * from pms_projects_test where
+		projectid=#{1} and
+		acceptid=#{0}
+	</select>
+
+	<select id="searchByMyCreate" resultMap="BaseResultMap"
+		parameterType="long">
+		select * from pms_projects_test where
+		projectid=#{1} and
+		userid=#{0}
+	</select>
+	<select id="searchByMySolve" resultMap="BaseResultMap"
+		parameterType="long">
+		select * from pms_projects_test where
+		projectid=#{1} and
+		completeid=#{0}
+	</select>
+
+
+
+	<select id="getPmsProjectsTest" resultMap="BaseResultMap"
+		parameterType="long">
+		select
+		pmstest.testid,
+		pmstest.taskid,
+		pmstest.needsid,
+		pmstest.userid,
+		pmstest.projectid,
+		pmstest.acceptid,
+		pmstest.completeid,
+		pmstest.ccid,
+		pmstest.name ,
+		pmstest.level,
+		pmstest.os,
+		pmstest.browser,
+		pmstest.attachment,
+		pmstest.completed,
+		pmstest.created,
+		pmstest.changed,
+		pmstest.status,
+		pmstest.bugdesc,
+		pms_projects_needs.name needname,
+		pms_projects_task.name taskname
+		from pms_projects_test
+		pmstest,pms_projects_needs,pms_projects_task
+		where
+		pmstest.needsid=pms_projects_needs.needsid and
+		pms_projects_task.taskid=pmstest.taskid and pmstest.testid=#{testid}
+	</select>
+
+	<update id="dispatchPeople">
+		update pms_projects_test set
+		bugdesc=#{bugdesc}
+		<if test="acceptid!=0">
+			,acceptid=#{acceptid}
+		</if>
+		where
+		testid=#{testid}
+	</update>
+
+	<update id="resolvent">
+		update pms_projects_test set
+		bugdesc=#{bugdesc}
+		<if test="status !=0">
+			,status=#{status}
+		</if>
+		where
+		testid=#{testid}
+	</update>
+
+	<select id="searchBug" resultMap="BaseResultMap" parameterType="PmsProjectsTest">
+		select * from pms_projects_test where projectid=#{projectid}
+		<if test="status !=0">
+			and status=#{status}
+		</if>
+		<if test="acceptid !=0">
+			and acceptid=#{acceptid}
+		</if>
+		<if test="name !=null">
+			and name like '%' || #{name} || '%'
+		</if>
+		
+	</select>
+
+	<update id="updatePmsProjectsTest" parameterType="com.opms.entity.PmsProjectsTest">
+		update
+		pms_projects_test
+		set taskid = #{taskid,jdbcType=BIGINT},
+		needsid =
+		#{needsid,jdbcType=BIGINT},
+		acceptid = #{acceptid,jdbcType=BIGINT},
+		ccid = #{ccid,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		level
+		= #{level,jdbcType=INTEGER},
+		os = #{os,jdbcType=VARCHAR},
+		bugdesc
+		=#{bugdesc},
+		browser = #{browser,jdbcType=VARCHAR},
+		attachment =
+		#{attachment,jdbcType=VARCHAR},
+		changed = #{changed,jdbcType=TIMESTAMP}
+		where testid = #{testid,jdbcType=BIGINT}
+	</update>
+	<insert id="inssertPmsProjectsTest" parameterType="com.opms.entity.PmsProjectsTest">
+		insert into
+		pms_projects_test
+		(projectid,userid,testid,needsid,taskid,acceptid,ccid,name,bugdesc,level,os,browser,attachment,created)
+		values
+		(#{projectid},#{userid},#{testid},#{needsid},#{taskid},#{acceptid},#{ccid},#{name},#{bugdesc},#{level},#{os},#{browser},#{attachment},#{created})
+	</insert>
+</mapper>

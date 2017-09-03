@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opms.mappers.PmsGooutsMapper" >
+  <resultMap id="BaseResultMap" type="com.opms.entity.PmsGoouts" >
+    <id column="gooutid" property="gooutid" jdbcType="BIGINT" />
+    <result column="userid" property="userid" jdbcType="BIGINT" />
+    <result column="started" property="started" jdbcType="TIMESTAMP" />
+    <result column="ended" property="ended" jdbcType="TIMESTAMP" />
+    <result column="hours" property="hours" jdbcType="REAL" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="result" property="result" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="approverids" property="approverids" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="changed" property="changed" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    gooutid, userid, started, ended, hours, reason, picture, result, status, approverids, 
+    created, changed
+  </sql>
+  <!-- 查询所有外出信息 -->
+  <select id="listGooutmanage" resultMap="BaseResultMap" parameterType="java.lang.Long">
+  select  <include refid="Base_Column_List" />
+    from pms_goouts where userid=#{userid,jdbcType=BIGINT}
+    </select>
+    <!-- 根据条件搜索外出信息 -->
+    <select id="listSearchGooutManage" resultMap="BaseResultMap" parameterType="com.opms.entity.PmsGoouts">
+    select  
+    <include refid="Base_Column_List" />
+    from pms_goouts   
+    <trim prefix="where" suffixOverrides="and">
+    <if test="userid != null" >
+        userid=${userid} and
+      </if>
+    <if test="result != null" >
+        result=${result} and
+      </if>
+      <if test="status != null" >
+         status=${status} 
+      </if>    
+      </trim> 
+    </select>
+    <!-- 修改外出事件状态 根据外出事件id -->
+    <update id="uodateGooutStatus" parameterType="java.lang.Long">
+     update pms_goouts set status=2 where gooutid=#{gooutid,jdbcType=BIGINT}
+    </update>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pms_goouts
+    where gooutid = #{gooutid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pms_goouts
+    where gooutid = #{gooutid,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.opms.entity.PmsGoouts" >
+    insert into pms_goouts (gooutid, userid, started, 
+      ended, hours, reason, 
+      picture, result, status, 
+      approverids, created, changed
+      )
+    values (#{gooutid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{started,jdbcType=TIMESTAMP}, 
+      #{ended,jdbcType=TIMESTAMP}, #{hours,jdbcType=REAL}, #{reason,jdbcType=VARCHAR}, 
+      #{picture,jdbcType=VARCHAR}, #{result,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{approverids,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{changed,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.opms.entity.PmsGoouts" >
+    insert into pms_goouts
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gooutid != null" >
+        gooutid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="started != null" >
+        started,
+      </if>
+      <if test="ended != null" >
+        ended,
+      </if>
+      <if test="hours != null" >
+        hours,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="approverids != null" >
+        approverids,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="changed != null" >
+        changed,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gooutid != null" >
+        #{gooutid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="started != null" >
+        #{started,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ended != null" >
+        #{ended,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hours != null" >
+        #{hours,jdbcType=REAL},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="approverids != null" >
+        #{approverids,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changed != null" >
+        #{changed,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.opms.entity.PmsGoouts" >
+    update pms_goouts
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="started != null" >
+        started = #{started,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ended != null" >
+        ended = #{ended,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hours != null" >
+        hours = #{hours,jdbcType=REAL},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="approverids != null" >
+        approverids = #{approverids,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changed != null" >
+        changed = #{changed,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where gooutid = #{gooutid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.opms.entity.PmsGoouts" >
+    update pms_goouts
+    set userid = #{userid,jdbcType=BIGINT},
+      started = #{started,jdbcType=TIMESTAMP},
+      ended = #{ended,jdbcType=TIMESTAMP},
+      hours = #{hours,jdbcType=REAL},
+      reason = #{reason,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      result = #{result,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      approverids = #{approverids,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      changed = #{changed,jdbcType=TIMESTAMP}
+    where gooutid = #{gooutid,jdbcType=BIGINT}
+  </update>
+</mapper>

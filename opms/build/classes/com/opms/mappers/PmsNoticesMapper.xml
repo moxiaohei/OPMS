@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opms.mappers.PmsNoticesMapper" >
+  <!-- author:liyanpeng desc:select all of the notices  -->
+  <select id="listPmsNotices" resultType="com.opms.entity.PmsNotices">
+    select * from pms_notices
+  </select>
+  <!-- author:liyanpeng desc: select a notice by id -->
+  <select id="getpmsNoticesById" resultType="com.opms.entity.PmsNotices" parameterType="java.lang.Long" >
+    select * from pms_notices where noticeid=#{noticeid}
+  </select>
+  <!-- author:liyanpeng desc:insert into a notice to table -->
+  <insert id="addNotices" parameterType="com.opms.entity.PmsNotices" >
+    insert into pms_notices values(#{noticeid},#{title},#{content},#{created},#{status})
+  </insert>
+  <!--author:liyanpeng  select the number of the table -->
+  <select id="countNotices" resultType="java.lang.Integer">
+    select count(*) from pms_notices
+  </select>
+  <!-- author: liyanpeng desc:update the status by id -->
+  <update id="updateNoticesStatus">
+    update pms_notices 
+    set status = #{1} 
+    where noticeid = #{0}
+  </update>
+  <!-- author:liyanpeng desc:update the title or the content of the parameter pmsnotices -->
+  <update id="updateNotices" parameterType="com.opms.entity.PmsNotices" >
+    update pms_notices 
+    set title = #{title,jdbcType=VARCHAR},
+    content=#{content}
+    where noticeid = #{noticeid,jdbcType=BIGINT}
+  </update>
+  <!-- author:liyanpeng desc: search the notice by title or status  -->
+  <select id="searchNotices"  parameterType="com.opms.entity.PmsNotices" resultType="com.opms.entity.PmsNotices">
+		select * from pms_notices 
+		<where>
+		<if test="title!=null and title!=''">
+			title like concat('%',#{title},'%')
+		</if>
+		<if test="status!=0">
+			and status=#{status}
+		</if>
+		</where>
+	</select>
+	<!-- author liyanpeng desc:select the title if exit -->
+	<select id="isExistTitle" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from pms_notices where title=#{0}
+	</select>
+	
+	
+	<!-- author:liyanpeng desc:delete the notice -->
+	<delete id="deleteNotice">
+		delete from pms_notices where noticeid=#{0}
+	</delete>
+</mapper>

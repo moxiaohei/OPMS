@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opms.mappers.PmsUsersMapper" >
+
+
+  <!-- 添加用户信息 -->
+   <insert id="addUserPmsUser"  parameterType="com.opms.entity.PmsUsers">
+   		INSERT INTO pms_users(userid,profile_id,username,password,avatar,status) VALUES
+   		(#{userid},#{profileId},#{username},#{password},#{avatar},#{status})
+   </insert>
+  	<!--更改用户信息  -->
+  <update id="updatePmsUser" parameterType="com.opms.entity.PmsUsers"> 
+  		 UPDATE pms_users SET username=#{username},password=#{password}
+			where userid=#{userid}; 
+   </update>   
+   <!--更改状态  -->
+   <update id="updatePms_Users" parameterType="com.opms.entity.PmsUsers"> 
+		 UPDATE pms_users SET status=#{status} WHERE userid=#{userid}
+	</update> 
+   <!--更改用户密码 -->
+   <update id="updatePasswords" parameterType="com.opms.entity.PmsUsers"> 
+		 UPDATE pms_users SET password=#{password} WHERE userid=#{userid}
+	</update> 
+  
+ 
+  	
+  	
+  	<!--根据ID查询组员信息 -->
+	 <select id="getPmsUsersById"  parameterType="long" resultType="com.opms.entity.PmsUsers">
+  		SELECT * FROM pms_users WHERE userid=#{userid}
+  	</select> 
+  	<!--根据用户名去查询数据  -->
+  	<select id="getPmsUsersByUsername"  parameterType="String" resultType="com.opms.entity.PmsUsers">
+  		SELECT * FROM pms_users WHERE username=#{username} AND status=1
+  	</select>
+  	<!--便利所有user得到userid  -->
+	<select id="listPmsUsers" resultType="com.opms.entity.PmsUsers">
+  		SELECT *  FROM pms_users
+  	</select>
+</mapper>

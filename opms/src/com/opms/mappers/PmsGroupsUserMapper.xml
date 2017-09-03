@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- author:liyanpeng -->
+<mapper namespace="com.opms.mappers.PmsGroupsUserMapper" >
+  <select id="listPmsGroupUser" parameterType="java.lang.Long" resultType="com.opms.entity.PmsGroupsUser">
+  	SELECT id,gu.userid userid,groupid,realname,uup.name from 
+  	(select * from pms_groups_user where groupid=#{groupid}) gu 
+  	LEFT JOIN 
+  	(SELECT up.userid,realname,p.name from pms_users_profile up LEFT JOIN pms_positions p ON up.positionid=p.positionid) uup 
+  	on gu.userid=uup.userid
+  </select>
+  <select id="getpmsGroupUserById" parameterType="java.lang.Long" resultType="com.opms.entity.PmsGroupsUser">
+  	SELECT id,gu.userid userid,groupid,realname,uup.name from 
+  	(select * from pms_groups_user where id=#{id}) gu 
+  	LEFT JOIN 
+  	(SELECT up.userid,realname,p.name from pms_users_profile up LEFT JOIN pms_positions p ON up.positionid=p.positionid) uup 
+  	on gu.userid=uup.userid
+  </select>
+  <insert id="addGroupUser" parameterType="com.opms.entity.PmsGroupsUser">
+  	insert into pms_groups_user values(#{id},#{groupid},#{userid})
+  </insert>
+  <delete id="deleteGroupUser"  parameterType="java.lang.Long">
+  	delete from pms_groups_user where id=#{id}
+  </delete>
+  <select id="isSameGroupsUser" resultType="java.lang.Integer">
+  	select count(*) from pms_groups_user where groupid=#{0} and userid=#{1}
+  </select>
+  <delete id="deleteGroupUserBygroupid">
+  	delete from pms_groups_user where groupid=#{0}
+  </delete>
+</mapper>

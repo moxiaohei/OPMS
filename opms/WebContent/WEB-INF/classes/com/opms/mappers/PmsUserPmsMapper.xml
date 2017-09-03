@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opms.mappers.PmsUserPmsMapper" >
+	<select id="listPmsUserPms" resultMap="listPmsUse"><!--便利user -->
+  		SELECT * FROM pms_users pu,pms_users_profile pup WHERE pu.userid=pup.userid;
+  	</select>
+  	
+  	
+  	<select id="listUsername" resultMap="listPmsUse"><!--便利user -->
+  		SELECT * FROM pms_users pu,pms_users_profile pup WHERE pu.userid=pup.userid and pu.status=1;
+  	</select>
+  	
+  	<resultMap type="PmsUserPms" id="listPmsUse">
+  		<association property="pmsUsers" javaType="PmsUsers">
+  			<id column="userid" property="userid" jdbcType="BIGINT" />
+		    <result column="profile_id" property="profileId" jdbcType="BIGINT" />
+		    <result column="username" property="username" jdbcType="VARCHAR" />
+		    <result column="password" property="password" jdbcType="VARCHAR" />
+		    <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+		    <result column="status" property="status" jdbcType="INTEGER" />
+  		</association>
+  		<association property="pmsUsersProfile" javaType="PmsUsersProfile">
+  			 <id column="userid" property="user_id" jdbcType="BIGINT" />
+		    <result column="realname" property="realname" jdbcType="VARCHAR" />
+		    <result column="sex" property="sex" jdbcType="INTEGER" />
+		    <result column="birth" property="birth" jdbcType="VARCHAR" />
+		    <result column="email" property="email" jdbcType="VARCHAR" />
+		    <result column="webchat" property="webchat" jdbcType="VARCHAR" />
+		    <result column="qq" property="qq" jdbcType="VARCHAR" />
+		    <result column="phone" property="phone" jdbcType="VARCHAR" />
+		    <result column="tel" property="tel" jdbcType="VARCHAR" />
+		    <result column="address" property="address" jdbcType="VARCHAR" />
+		    <result column="emercontact" property="emercontact" jdbcType="VARCHAR" />
+		    <result column="emerphone" property="emerphone" jdbcType="VARCHAR" />
+		    <result column="departid" property="departid" jdbcType="BIGINT" />
+		    <result column="positionid" property="positionid" jdbcType="BIGINT" />
+		    <result column="lognum" property="lognum" jdbcType="INTEGER" />
+		    <result column="ip" property="ip" jdbcType="VARCHAR" />
+		    <result column="lasted" property="lasted" jdbcType="DATE" />
+  		</association>
+  	</resultMap>
+  	<!--根据ID查询组员  -->
+  	<select id="getPmsUsersProfileById" parameterType="Long" resultType="PmsUserPms"><!--根据ID查询用户记录  -->
+  		SELECT * FROM pms_users pu,pms_users_profile pup WHERE pu.userid=pup.userid AND pu.userid=#{userid}
+  	</select>
+  	
+  	
+  	
+  	
+  	
+  	<!-- 对用户信息带状态查询 -->
+	<select id="searchUser" resultMap="listPmsUse"><!-- 便利user -->
+  		select pu.userid,  pu.username,pup.realname,pup.sex,pup.emerphone,
+  		pup.lasted,pu.status,pup.phone 
+
+ 		from pms_users pu left join pms_users_profile pup
+  		on pu.userid=pup.userid
+		<where>
+			pu.userid=pup.userid
+			<if test="status !=null and status !='' ">
+				and pu.status=#{status}
+			</if>
+			<if test="username !=null and username !='' ">
+				AND pu.username like CONCAT('%',#{username},'%')
+				OR pup.realname like CONCAT('%',#{username},'%')
+			</if>
+			
+		</where>
+
+  	</select> 
+  	
+  	
+</mapper>

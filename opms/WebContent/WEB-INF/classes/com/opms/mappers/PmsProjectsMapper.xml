@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opms.mappers.PmsProjectsMapper">
+	<resultMap id="BaseResultMap" type="com.opms.entity.PmsProjects">
+		<id column="projectid" property="projectid" jdbcType="BIGINT" />
+		<result column="userid" property="userid" jdbcType="BIGINT" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="aliasname" property="aliasname" jdbcType="VARCHAR" />
+		<result column="started" property="started" jdbcType="TIMESTAMP" />
+		<result column="ended" property="ended" jdbcType="TIMESTAMP" />
+		<result column="created" property="created" jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="projuserid" property="projuserid" jdbcType="BIGINT" />
+		<result column="produserid" property="produserid" jdbcType="BIGINT" />
+		<result column="testuserid" property="testuserid" jdbcType="BIGINT" />
+		<result column="publuserid" property="publuserid" jdbcType="BIGINT" />
+		<result column="projectdescribe" property="projectdescribe" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<select id="listPmsProjects" resultMap="BaseResultMap">
+        select * from  pms_projects      	
+	</select>
+	
+	<select id="checkedProjectname" resultMap="BaseResultMap">
+	   select * from pms_projects where name=#{name}
+	</select>
+	
+	<select id="searchProject" resultMap="BaseResultMap" parameterType="PmsProjects">
+	    select * from  pms_projects where 1=1
+        <if test=" status != 0">
+           and status=#{status}
+        </if>	
+        <if test="name !=''">
+			and name like CONCAT('%',#{name},'%')
+        </if>    
+	</select>
+	
+	<select id="getPmsProjects" parameterType="Long" resultMap="BaseResultMap">
+	      select * from pms_projects where projectid=#{projectid}
+	</select>
+	
+	<insert id="insertPmsProjects" parameterType="PmsProjects">
+	      insert into  pms_projects (name,aliasname,started,ended,projectdescribe,userid,projectid) 
+	      values (#{name},#{aliasname},#{started},#{ended},#{projectdescribe},#{userid},#{projectid})
+	</insert>
+	
+	 <update id="updatePmsProjects" parameterType="PmsProjects">
+		update pms_projects
+		set 
+		name = #{name,jdbcType=VARCHAR},
+		aliasname = #{aliasname,jdbcType=VARCHAR},
+		started = #{started,jdbcType=TIMESTAMP},
+		ended = #{ended,jdbcType=TIMESTAMP},
+		projuserid = #{projuserid,jdbcType=BIGINT},
+		produserid = #{produserid,jdbcType=BIGINT},
+		testuserid = #{testuserid,jdbcType=BIGINT},
+		publuserid = #{publuserid,jdbcType=BIGINT},
+		projectdescribe = #{projectdescribe}
+		where projectid = #{projectid,jdbcType=BIGINT}
+	</update>
+	
+	<update id="updatePmsProjectsState" parameterType="int">
+	    update pms_projects set status=#{status} where projectid=#{projectid}
+	</update>
+	
+	
+</mapper>

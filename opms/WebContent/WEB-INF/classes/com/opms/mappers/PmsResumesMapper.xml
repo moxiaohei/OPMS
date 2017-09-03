@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opms.mappers.PmsResumesMapper" >
+  
+  <!-- 基础简历信息 -->
+  <resultMap id="BaseResultMap" type="com.opms.entity.PmsResumes" >
+    <id column="resumeid" property="resumeid" jdbcType="BIGINT" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="birth" property="birth" jdbcType="DATE" />
+    <result column="edu" property="edu" jdbcType="INTEGER" />
+    <result column="work" property="work" jdbcType="INTEGER" />
+    <result column="attachment" property="attachment" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 基础简历信息 -->
+  <sql id="Base_Column_List" >
+    resumeid, realname, sex, birth, edu, work, attachment, created, status, note, phone
+  </sql>
+  
+  <!-- 查询所有简历信息 -->
+  <select id="listResumes" resultType="com.opms.entity.PmsResumes" >
+	 select * from pms_resumes
+  </select>
+  
+  <!-- 根据简历ID查询一条简历信息 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pms_resumes
+    where resumeid = #{resumeid,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 根据简历ID删除简历信息 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pms_resumes
+    where resumeid = #{resumeid,jdbcType=BIGINT}
+  </delete>
+  
+  <!-- 插入简历信息 -->
+  <insert id="insertSelective" parameterType="com.opms.entity.PmsResumes" >
+    insert into pms_resumes values(#{resumeid},#{realname},#{sex},#{birth},#{edu},#{work},#{attachment},#{created},#{status},#{note},#{phone})
+  </insert>
+  
+  <!-- 根据简历ID更新简历信息 -->
+  <update id="updateByPrimaryKey" parameterType="com.opms.entity.PmsResumes" >
+    update pms_resumes
+    set realname = #{realname,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      birth = #{birth,jdbcType=DATE},
+      edu = #{edu,jdbcType=INTEGER},
+      work = #{work,jdbcType=INTEGER},
+      attachment = #{attachment,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      note = #{note,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR}
+    where resumeid = #{resumeid,jdbcType=BIGINT}
+  </update>
+  
+  <select id="searchResumes" resultType="com.opms.entity.PmsResumes" >
+	select * from pms_resumes 
+	<where>
+		<if test="status!=0">
+			status like '%${status}%'
+		</if>
+		<if test="realname!=null">
+			AND realname like '%${realname}%'
+		</if>
+	</where>
+  </select>
+  
+  <!-- 根据简历ID更改简历状态 -->
+  <update id="updateStateById">
+  	update pms_resumes set status = #{status} 
+  	<where>
+  		<if test="resumeid!=0">
+  			resumeid = #{resumeid}
+  		</if>
+  	</where>
+  </update>
+  
+  
+</mapper>

@@ -1,0 +1,53 @@
+/* Code tidied up by ScrapBook */
+html[xmlns] .clearfix { display: block; }
+* html .clearfix { height: 1%; }
+.noselect { -moz-user-select: none; }
+.cal1 { max-width: 600px; font-size: 14px; }
+.cal1 .clndr .clndr-controls { display: inline-block; width: 100%; position: relative; margin-bottom: 10px; text-align: center; }
+.cal1 .clndr .clndr-controls .month { display: inline-block; width: 190px; text-align: center; color: rgb(193, 193, 193); font-size: 20px; text-transform: uppercase; font-family: "Open Sans",sans-serif; font-weight: 300; padding: 5px; position: relative; top: 2px; }
+.cal1 .clndr .clndr-controls .clndr-control-button { display: inline-block; text-align: right; }
+.cal1 .clndr .clndr-controls .clndr-control-button.leftalign { text-align: left !important; }
+.cal1 .clndr .clndr-controls .clndr-control-button .clndr-next-button { cursor: pointer; -moz-user-select: none; padding: 5px 10px; border-radius: 3px; color: rgb(193, 193, 193); }
+.cal1 .clndr .clndr-controls .clndr-control-button .clndr-next-button:hover { background: rgb(244, 244, 244) none repeat scroll 0% 0%; padding: 5px 10px; }
+.cal1 .clndr .clndr-controls .clndr-control-button .clndr-next-button.inactive { opacity: 0.5; }
+.cal1 .clndr .clndr-controls .clndr-control-button .clndr-next-button.inactive:hover { background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%; cursor: default; }
+.cal1 .clndr .clndr-controls .clndr-control-button .clndr-previous-button { cursor: pointer; -moz-user-select: none; padding: 5px 10px; border-radius: 3px; color: rgb(193, 193, 193); }
+.cal1 .clndr .clndr-controls .clndr-control-button .clndr-previous-button:hover { background: rgb(244, 244, 244) none repeat scroll 0% 0%; padding: 5px 10px; }
+.cal1 .clndr .clndr-controls .clndr-control-button .clndr-previous-button.inactive { opacity: 0.5; }
+.cal1 .clndr .clndr-controls .clndr-control-button .clndr-previous-button.inactive:hover { background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%; cursor: default; }
+.cal1 .clndr .clndr-table { table-layout: fixed; width: 100%; }
+.cal1 .clndr .clndr-table .header-days { height: 40px; font-size: 10px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; }
+.cal1 .clndr .clndr-table .header-days .header-day { vertical-align: middle; text-align: center; border-left: 0px solid rgb(0, 0, 0); border-top: 0px solid rgb(0, 0, 0); color: rgb(102, 102, 102); font-size: 14px; }
+.cal1 .clndr .clndr-table .header-days .header-day:last-child { border-right: 0px solid rgb(0, 0, 0); }
+.cal1 .clndr .clndr-table tr { height: auto; }
+.cal1 .clndr .clndr-table tr td { vertical-align: top; }
+.cal1 .clndr .clndr-table tr .day { border-left: 0px solid rgb(0, 0, 0); border-top: 0px solid rgb(0, 0, 0); width: 100%; height: inherit; }
+.cal1 .clndr .clndr-table tr .day:hover {  }
+.cal1 .clndr .clndr-table tr .day.today {  }
+.cal1 .clndr .clndr-table tr .day.today:hover {  }
+.cal1 .clndr .clndr-table tr .day.today.event {  }
+.cal1 .clndr .clndr-table tr .day.event {  }
+.cal1 .clndr .clndr-table tr .day.event:hover {  }
+.cal1 .clndr .clndr-table tr .day.inactive { background: rgb(221, 221, 221) none repeat scroll 0% 0%; }
+.cal1 .clndr .clndr-table tr .day:last-child { border-right: 0px solid rgb(0, 0, 0); }
+.cal1 .clndr .clndr-table tr .day .day-contents { box-sizing: border-box; padding: 8px; font-size: 12px; text-align: center; }
+.cal1 .clndr .clndr-table tr .empty, .cal1 .clndr .clndr-table tr .adjacent-month { border-left: 0px solid rgb(0, 0, 0); border-top: 0px solid rgb(0, 0, 0); width: 100%; height: inherit; }
+.cal1 .clndr .clndr-table tr .empty:hover, .cal1 .clndr .clndr-table tr .adjacent-month:hover {  }
+.cal1 .clndr .clndr-table tr .empty:last-child, .cal1 .clndr .clndr-table tr .adjacent-month:last-child { border-right: 0px solid rgb(0, 0, 0); }
+.cal1 .clndr .clndr-table tr:last-child .day { border-bottom: 0px solid rgb(0, 0, 0); }
+.cal1 .clndr .clndr-table tr:last-child .empty { border-bottom: 0px solid rgb(0, 0, 0); }
+.cal2 { max-width: 177px; margin: 0px auto; font-family: "Droid Sans Mono"; }
+.cal2 .clndr .clndr-controls { display: inline-block; width: 100%; margin-bottom: 3px; }
+.cal2 .clndr .clndr-controls .clndr-previous-button { float: left; width: 10%; text-align: left; cursor: pointer; -moz-user-select: none; }
+.cal2 .clndr .clndr-controls .clndr-previous-button:hover { background-color: rgb(244, 244, 244); }
+.cal2 .clndr .clndr-controls .month { float: left; width: 80%; text-align: center; }
+.cal2 .clndr .clndr-controls .clndr-next-button { float: left; width: 10%; text-align: right; cursor: pointer; -moz-user-select: none; }
+.cal2 .clndr .clndr-controls .clndr-next-button:hover { background-color: rgb(244, 244, 244); }
+.cal2 .clndr .clndr-grid { text-align: center; border: 0px solid rgb(255, 69, 69); display: inline-block; }
+.cal2 .clndr .clndr-grid .header-day { float: left; width: 25px; height: 25px; background: rgb(255, 69, 69) none repeat scroll 0% 0%; }
+.cal2 .clndr .clndr-grid .day { float: left; width: 25px; height: 25px; }
+.cal2 .clndr .clndr-grid .day.event { background-color: rgb(180, 224, 159); }
+.cal2 .clndr .clndr-grid .day.today { background-color: rgb(227, 197, 127); }
+.cal2 .clndr .clndr-grid .empty, .cal2 .clndr .clndr-grid .adjacent-month { float: left; width: 25px; height: 25px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; }
+.cal2 .clndr .clndr-today-button { width: 100%; text-align: center; cursor: pointer; }
+.cal2 .clndr .clndr-today-button:hover { background-color: rgb(221, 221, 221); }

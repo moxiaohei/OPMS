@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opms.mappers.PmsGroupsMapper" >
+  <!-- author:liyanpeng desc:select all of the group  -->
+  <select id="listPmsGroups" resultType="com.opms.entity.PmsGroups">
+    select * from pms_groups
+  </select>
+  <!-- author:liyanpeng desc: select a group by id -->
+  <select id="getPmsGroupById" resultType="com.opms.entity.PmsGroups" parameterType="java.lang.Long" >
+    select * from pms_groups where groupid=#{groupid}
+  </select>
+  <!-- author:liyanpeng desc:insert into a group to table -->
+  <insert id="addGroup" parameterType="com.opms.entity.PmsGroups" >
+    insert into pms_groups values(#{groupid},#{name},#{summary},#{created},#{changed})
+  </insert>
+  <!--author:liyanpeng  select the number of the table -->
+  <select id="countGroups" resultType="java.lang.Integer">
+    select count(*) from pms_groups
+  </select>
+  <!-- author:liyanpeng desc:update the name or the content of the parameter group -->
+  <update id="updateGroup" parameterType="com.opms.entity.PmsGroups" >
+    update pms_groups 
+    set name = #{name,jdbcType=VARCHAR},
+    summary=#{summary}
+    where groupid = #{groupid,jdbcType=BIGINT}
+  </update>
+  <!-- author:liyanpeng desc: search the notice by title  -->
+  <select id="searchGroup"  parameterType="com.opms.entity.PmsGroups" resultType="com.opms.entity.PmsGroups">
+		select * from pms_groups 
+		<where>
+		<if test="name!=null and name!=''">
+			name like concat('%',#{name},'%')
+		</if>
+		</where>
+	</select>
+	<!-- author liyanpeng desc:select the name if exit -->
+	<select id="isExistGroupName" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from pms_groups where name=#{0}
+	</select>
+	
+	
+	<!-- author:liyanpeng desc:delete the group -->
+	<delete id="deleteGroup">
+		delete from pms_groups where groupid=#{0}
+	</delete>
+	
+	<!-- author:liyanpeng desc:update the time of the last time -->
+	<update id="updateGroupTime">
+		update pms_groups set changed=#{1} where groupid =#{0}
+	</update>
+</mapper>

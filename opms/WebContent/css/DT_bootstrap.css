@@ -1,0 +1,36 @@
+/* Code tidied up by ScrapBook */
+div.dataTables_length label { float: left; text-align: left; }
+div.dataTables_length select { width: 75px; }
+div.dataTables_filter label { float: right; }
+div.dataTables_info { padding-top: 8px; }
+div.dataTables_paginate { float: right; margin: 0px; }
+table.table { clear: both; margin-bottom: 6px !important; max-width: none !important; }
+table.table thead .sorting, table.table thead .sorting_asc, table.table thead .sorting_desc, table.table thead .sorting_asc_disabled, table.table thead .sorting_desc_disabled { cursor: pointer; }
+table.table thead .sorting { background: rgba(0, 0, 0, 0) url("sort_both.png") no-repeat scroll right center; }
+table.table thead .sorting_asc { background: rgba(0, 0, 0, 0) url("sort_asc_001.png") no-repeat scroll right center; }
+table.table thead .sorting_desc { background: rgba(0, 0, 0, 0) url("sort_desc.png") no-repeat scroll right center; }
+table.table thead .sorting_asc_disabled { background: rgba(0, 0, 0, 0) url("sort_asc_disabled_001.png") no-repeat scroll right center; }
+table.table thead .sorting_desc_disabled { background: rgba(0, 0, 0, 0) url("sort_desc_disabled_001.png") no-repeat scroll right center; }
+table.dataTable th:active { outline: medium none; }
+div.dataTables_scrollHead table { margin-bottom: 0px !important; border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; }
+div.dataTables_scrollHead table thead tr:last-child th:first-child, div.dataTables_scrollHead table thead tr:last-child td:first-child { border-bottom-left-radius: 0px !important; border-bottom-right-radius: 0px !important; }
+div.dataTables_scrollBody table { border-top: medium none; margin-bottom: 0px !important; }
+div.dataTables_scrollBody tbody tr:first-child th, div.dataTables_scrollBody tbody tr:first-child td { border-top: medium none; }
+div.dataTables_scrollFoot table { border-top: medium none; }
+.table tbody tr.active td, .table tbody tr.active th { background-color: rgb(0, 136, 204); color: white; }
+.table tbody tr.active:hover td, .table tbody tr.active:hover th { background-color: rgb(0, 117, 176) !important; }
+.table-striped tbody tr.active:nth-child(2n+1) td, .table-striped tbody tr.active:nth-child(2n+1) th { background-color: rgb(1, 126, 188); }
+table.DTTT_selectable tbody tr { cursor: pointer; }
+div.DTTT .btn { color: rgb(51, 51, 51) !important; font-size: 12px; }
+div.DTTT .btn:hover { text-decoration: none !important; }
+ul.DTTT_dropdown.dropdown-menu a { color: rgb(51, 51, 51) !important; }
+ul.DTTT_dropdown.dropdown-menu li:hover a { background-color: rgb(0, 136, 204); color: white !important; }
+div.DTTT_print_info.modal { height: 150px; margin-top: -75px; text-align: center; }
+div.DTTT_print_info h6 { font-weight: normal; font-size: 28px; line-height: 28px; margin: 1em; }
+div.DTTT_print_info p { font-size: 14px; line-height: 20px; }
+div.DTFC_LeftHeadWrapper table, div.DTFC_LeftFootWrapper table, table.DTFC_Cloned tr.even { background-color: white; }
+div.DTFC_LeftHeadWrapper table { margin-bottom: 0px !important; border-top-right-radius: 0px !important; border-bottom-left-radius: 0px !important; border-bottom-right-radius: 0px !important; }
+div.DTFC_LeftHeadWrapper table thead tr:last-child th:first-child, div.DTFC_LeftHeadWrapper table thead tr:last-child td:first-child { border-bottom-left-radius: 0px !important; border-bottom-right-radius: 0px !important; }
+div.DTFC_LeftBodyWrapper table { border-top: medium none; margin-bottom: 0px !important; }
+div.DTFC_LeftBodyWrapper tbody tr:first-child th, div.DTFC_LeftBodyWrapper tbody tr:first-child td { border-top: medium none; }
+div.DTFC_LeftFootWrapper table { border-top: medium none; }

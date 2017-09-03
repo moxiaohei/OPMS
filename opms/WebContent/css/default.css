@@ -1,0 +1,191 @@
+/* Code tidied up by ScrapBook */
+.ke-inline-block { display: inline-block; vertical-align: middle; }
+.ke-clearfix {  }
+.ke-clearfix::after { content: "."; display: block; clear: both; font-size: 0px; height: 0px; line-height: 0; visibility: hidden; }
+.ke-shadow { box-shadow: 1px 1px 3px rgb(160, 160, 160); background-color: rgb(240, 240, 238); }
+.ke-menu a, .ke-menu a:hover, .ke-dialog a, .ke-dialog a:hover { color: rgb(51, 127, 229); text-decoration: none; }
+.ke-icon-source { background-position: 0px 0px; width: 16px; height: 16px; }
+.ke-icon-preview { background-position: 0px -16px; width: 16px; height: 16px; }
+.ke-icon-print { background-position: 0px -32px; width: 16px; height: 16px; }
+.ke-icon-undo { background-position: 0px -48px; width: 16px; height: 16px; }
+.ke-icon-redo { background-position: 0px -64px; width: 16px; height: 16px; }
+.ke-icon-cut { background-position: 0px -80px; width: 16px; height: 16px; }
+.ke-icon-copy { background-position: 0px -96px; width: 16px; height: 16px; }
+.ke-icon-paste { background-position: 0px -112px; width: 16px; height: 16px; }
+.ke-icon-selectall { background-position: 0px -128px; width: 16px; height: 16px; }
+.ke-icon-justifyleft { background-position: 0px -144px; width: 16px; height: 16px; }
+.ke-icon-justifycenter { background-position: 0px -160px; width: 16px; height: 16px; }
+.ke-icon-justifyright { background-position: 0px -176px; width: 16px; height: 16px; }
+.ke-icon-justifyfull { background-position: 0px -192px; width: 16px; height: 16px; }
+.ke-icon-insertorderedlist { background-position: 0px -208px; width: 16px; height: 16px; }
+.ke-icon-insertunorderedlist { background-position: 0px -224px; width: 16px; height: 16px; }
+.ke-icon-indent { background-position: 0px -240px; width: 16px; height: 16px; }
+.ke-icon-outdent { background-position: 0px -256px; width: 16px; height: 16px; }
+.ke-icon-subscript { background-position: 0px -272px; width: 16px; height: 16px; }
+.ke-icon-superscript { background-position: 0px -288px; width: 16px; height: 16px; }
+.ke-icon-date { background-position: 0px -304px; width: 25px; height: 16px; }
+.ke-icon-time { background-position: 0px -320px; width: 25px; height: 16px; }
+.ke-icon-formatblock { background-position: 0px -336px; width: 25px; height: 16px; }
+.ke-icon-fontname { background-position: 0px -352px; width: 21px; height: 16px; }
+.ke-icon-fontsize { background-position: 0px -368px; width: 23px; height: 16px; }
+.ke-icon-forecolor { background-position: 0px -384px; width: 20px; height: 16px; }
+.ke-icon-hilitecolor { background-position: 0px -400px; width: 23px; height: 16px; }
+.ke-icon-bold { background-position: 0px -416px; width: 16px; height: 16px; }
+.ke-icon-italic { background-position: 0px -432px; width: 16px; height: 16px; }
+.ke-icon-underline { background-position: 0px -448px; width: 16px; height: 16px; }
+.ke-icon-strikethrough { background-position: 0px -464px; width: 16px; height: 16px; }
+.ke-icon-removeformat { background-position: 0px -480px; width: 16px; height: 16px; }
+.ke-icon-image { background-position: 0px -496px; width: 16px; height: 16px; }
+.ke-icon-flash { background-position: 0px -512px; width: 16px; height: 16px; }
+.ke-icon-media { background-position: 0px -528px; width: 16px; height: 16px; }
+.ke-icon-div { background-position: 0px -544px; width: 16px; height: 16px; }
+.ke-icon-formula { background-position: 0px -576px; width: 16px; height: 16px; }
+.ke-icon-hr { background-position: 0px -592px; width: 16px; height: 16px; }
+.ke-icon-emoticons { background-position: 0px -608px; width: 16px; height: 16px; }
+.ke-icon-link { background-position: 0px -624px; width: 16px; height: 16px; }
+.ke-icon-unlink { background-position: 0px -640px; width: 16px; height: 16px; }
+.ke-icon-fullscreen { background-position: 0px -656px; width: 16px; height: 16px; }
+.ke-icon-about { background-position: 0px -672px; width: 16px; height: 16px; }
+.ke-icon-plainpaste { background-position: 0px -704px; width: 16px; height: 16px; }
+.ke-icon-wordpaste { background-position: 0px -720px; width: 16px; height: 16px; }
+.ke-icon-table { background-position: 0px -784px; width: 16px; height: 16px; }
+.ke-icon-tablemenu { background-position: 0px -768px; width: 16px; height: 16px; }
+.ke-icon-tableinsert { background-position: 0px -784px; width: 16px; height: 16px; }
+.ke-icon-tabledelete { background-position: 0px -800px; width: 16px; height: 16px; }
+.ke-icon-tablecolinsertleft { background-position: 0px -816px; width: 16px; height: 16px; }
+.ke-icon-tablecolinsertright { background-position: 0px -832px; width: 16px; height: 16px; }
+.ke-icon-tablerowinsertabove { background-position: 0px -848px; width: 16px; height: 16px; }
+.ke-icon-tablerowinsertbelow { background-position: 0px -864px; width: 16px; height: 16px; }
+.ke-icon-tablecoldelete { background-position: 0px -880px; width: 16px; height: 16px; }
+.ke-icon-tablerowdelete { background-position: 0px -896px; width: 16px; height: 16px; }
+.ke-icon-tablecellprop { background-position: 0px -912px; width: 16px; height: 16px; }
+.ke-icon-tableprop { background-position: 0px -928px; width: 16px; height: 16px; }
+.ke-icon-checked { background-position: 0px -944px; width: 16px; height: 16px; }
+.ke-icon-code { background-position: 0px -960px; width: 16px; height: 16px; }
+.ke-icon-map { background-position: 0px -976px; width: 16px; height: 16px; }
+.ke-icon-baidumap { background-position: 0px -976px; width: 16px; height: 16px; }
+.ke-icon-lineheight { background-position: 0px -992px; width: 16px; height: 16px; }
+.ke-icon-clearhtml { background-position: 0px -1008px; width: 16px; height: 16px; }
+.ke-icon-pagebreak { background-position: 0px -1024px; width: 16px; height: 16px; }
+.ke-icon-insertfile { background-position: 0px -1040px; width: 16px; height: 16px; }
+.ke-icon-quickformat { background-position: 0px -1056px; width: 16px; height: 16px; }
+.ke-icon-template { background-position: 0px -1072px; width: 16px; height: 16px; }
+.ke-icon-tablecellsplit { background-position: 0px -1088px; width: 16px; height: 16px; }
+.ke-icon-tablerowmerge { background-position: 0px -1104px; width: 16px; height: 16px; }
+.ke-icon-tablerowsplit { background-position: 0px -1120px; width: 16px; height: 16px; }
+.ke-icon-tablecolmerge { background-position: 0px -1136px; width: 16px; height: 16px; }
+.ke-icon-tablecolsplit { background-position: 0px -1152px; width: 16px; height: 16px; }
+.ke-icon-anchor { background-position: 0px -1168px; width: 16px; height: 16px; }
+.ke-icon-search { background-position: 0px -1184px; width: 16px; height: 16px; }
+.ke-icon-new { background-position: 0px -1200px; width: 16px; height: 16px; }
+.ke-icon-specialchar { background-position: 0px -1216px; width: 16px; height: 16px; }
+.ke-icon-multiimage { background-position: 0px -1232px; width: 16px; height: 16px; }
+.ke-container { display: block; border: 1px solid rgb(204, 204, 204); background-color: rgb(255, 255, 255); overflow: hidden; margin: 0px; padding: 0px; }
+.ke-toolbar { border-bottom: 1px solid rgb(204, 204, 204); background-color: rgb(240, 240, 238); padding: 2px 5px; text-align: left; overflow: hidden; }
+.ke-toolbar-icon { background-repeat: no-repeat; font-size: 0px; line-height: 0; overflow: hidden; display: block; }
+.ke-toolbar-icon-url { background-image: url("../img/default.png"); }
+.ke-toolbar .ke-outline { border: 1px solid rgb(240, 240, 238); margin: 1px; padding: 1px 2px; font-size: 0px; line-height: 0; overflow: hidden; cursor: pointer; display: block; float: left; }
+.ke-toolbar .ke-on { border: 1px solid rgb(86, 144, 210); }
+.ke-toolbar .ke-selected { border: 1px solid rgb(86, 144, 210); background-color: rgb(233, 239, 246); }
+.ke-toolbar .ke-disabled { cursor: default; }
+.ke-toolbar .ke-separator { height: 16px; margin: 2px 3px; border-width: 0px 1px; border-style: none solid; border-color: currentcolor rgb(255, 255, 255) currentcolor rgb(160, 160, 160); width: 0px; font-size: 0px; line-height: 0; overflow: hidden; display: block; float: left; }
+.ke-toolbar .ke-hr { overflow: hidden; height: 1px; clear: both; }
+.ke-edit { padding: 0px; }
+.ke-edit-iframe, .ke-edit-textarea { border: 0px none; margin: 0px; padding: 0px; overflow: auto; }
+.ke-edit-textarea { font: 12px/1.5 "Consolas","Monaco","Bitstream Vera Sans Mono","Courier New",Courier,monospace; color: rgb(0, 0, 0); overflow: auto; resize: none; }
+.ke-edit-textarea:focus { outline: medium none; }
+.ke-statusbar { position: relative; background-color: rgb(240, 240, 238); border-top: 1px solid rgb(204, 204, 204); font-size: 0px; line-height: 0; overflow: hidden; text-align: center; cursor: s-resize; }
+.ke-statusbar-center-icon { background-position: 0px -754px; width: 15px; height: 11px; background-image: url("default.png"); }
+.ke-statusbar-right-icon { position: absolute; right: 0px; bottom: 0px; cursor: se-resize; background-position: -5px -741px; width: 11px; height: 11px; background-image: url("default.png"); }
+.ke-menu { border: 1px solid rgb(160, 160, 160); background-color: rgb(241, 241, 241); color: rgb(34, 34, 34); padding: 2px; font-family: "sans serif",tahoma,verdana,helvetica; font-size: 12px; text-align: left; overflow: hidden; }
+.ke-menu-item { border: 1px solid rgb(241, 241, 241); background-color: rgb(241, 241, 241); color: rgb(34, 34, 34); height: 24px; overflow: hidden; cursor: pointer; }
+.ke-menu-item-on { border: 1px solid rgb(86, 144, 210); background-color: rgb(233, 239, 246); }
+.ke-menu-item-left { width: 27px; text-align: center; overflow: hidden; }
+.ke-menu-item-center { width: 0px; height: 24px; border-width: 0px 1px; border-style: none solid; border-color: currentcolor rgb(255, 255, 255) currentcolor rgb(227, 227, 227); }
+.ke-menu-item-center-on { border-left: 1px solid rgb(233, 239, 246); border-right: 1px solid rgb(233, 239, 246); }
+.ke-menu-item-right { border: 0px none; padding: 0px 0px 0px 5px; line-height: 24px; text-align: left; overflow: hidden; }
+.ke-menu-separator { margin: 2px 0px; height: 0px; overflow: hidden; border-width: 1px 0px; border-style: solid none; border-color: rgb(204, 204, 204) currentcolor rgb(255, 255, 255); }
+.ke-colorpicker { border: 1px solid rgb(160, 160, 160); background-color: rgb(241, 241, 241); color: rgb(34, 34, 34); padding: 2px; }
+.ke-colorpicker-table { border: 0px none; margin: 0px; padding: 0px; border-collapse: separate; }
+.ke-colorpicker-cell { font-size: 0px; line-height: 0; border: 1px solid rgb(240, 240, 238); cursor: pointer; margin: 3px; padding: 0px; }
+.ke-colorpicker-cell-top { font-family: "sans serif",tahoma,verdana,helvetica; font-size: 12px; line-height: 24px; border: 1px solid rgb(240, 240, 238); cursor: pointer; margin: 0px; padding: 0px; text-align: center; }
+.ke-colorpicker-cell-on { border: 1px solid rgb(86, 144, 210); }
+.ke-colorpicker-cell-selected { border: 1px solid rgb(36, 70, 171); }
+.ke-colorpicker-cell-color { width: 14px; height: 14px; margin: 3px; padding: 0px; border: 0px none; }
+.ke-dialog { position: absolute; margin: 0px; padding: 0px; }
+.ke-dialog-content { background-color: rgb(255, 255, 255); width: 100%; height: 100%; color: rgb(51, 51, 51); border: 1px solid rgb(160, 160, 160); }
+.ke-dialog-shadow { position: absolute; z-index: -1; top: 0px; left: 0px; width: 100%; height: 100%; box-shadow: 3px 3px 7px rgb(153, 153, 153); background-color: rgb(240, 240, 238); }
+.ke-dialog-header { border-width: 0px 0px 1px; border-style: none none solid; border-color: currentcolor currentcolor rgb(207, 207, 207); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; margin: 0px; padding: 0px 10px; background: rgb(240, 240, 238) url("../img/background.png") repeat scroll 0px 0px; height: 24px; font: 12px/24px "sans serif",tahoma,verdana,helvetica; text-align: left; color: rgb(34, 34, 34); cursor: move; }
+.ke-dialog-icon-close { display: block; background: rgba(0, 0, 0, 0) url("../img/default.png") no-repeat scroll 0px -688px; width: 16px; height: 16px; position: absolute; right: 6px; top: 6px; cursor: pointer; }
+.ke-dialog-body { font: 12px/1.5 "sans serif",tahoma,verdana,helvetica; text-align: left; overflow: hidden; width: 100%; }
+.ke-dialog-body textarea { display: block; overflow: auto; padding: 0px; resize: none; }
+.ke-dialog-body textarea:focus, .ke-dialog-body input:focus, .ke-dialog-body select:focus { outline: medium none; }
+.ke-dialog-body label { margin-right: 10px; cursor: pointer; display: inline-block; vertical-align: middle; }
+.ke-dialog-body img { display: inline-block; vertical-align: middle; }
+.ke-dialog-body select { display: inline-block; vertical-align: middle; width: auto; }
+.ke-dialog-body .ke-textarea { display: block; width: 408px; height: 260px; font-family: "sans serif",tahoma,verdana,helvetica; font-size: 12px; border-color: rgb(132, 132, 132) rgb(224, 224, 224) rgb(224, 224, 224) rgb(132, 132, 132); border-style: solid; border-width: 1px; }
+.ke-dialog-body .ke-form { margin: 0px; padding: 0px; }
+.ke-dialog-loading { position: absolute; top: 0px; left: 1px; z-index: 1; text-align: center; }
+.ke-dialog-loading-content { background: rgba(0, 0, 0, 0) url("../img/loading.gif") no-repeat scroll 0% 0%; color: rgb(102, 102, 102); font-size: 14px; font-weight: bold; height: 31px; line-height: 31px; padding-left: 36px; }
+.ke-dialog-row { margin-bottom: 10px; }
+.ke-dialog-footer { font: 12px/1 "sans serif",tahoma,verdana,helvetica; text-align: right; padding: 0px 0px 5px; background-color: rgb(255, 255, 255); width: 100%; }
+.ke-dialog-preview, .ke-dialog-yes { margin: 5px; }
+.ke-dialog-no { margin: 5px 10px 5px 5px; }
+.ke-dialog-mask { background-color: rgb(255, 255, 255); opacity: 0.5; }
+.ke-button-common { background: transparent url("../img/background.png") no-repeat scroll 0px -25px; height: 23px; line-height: 23px; overflow: visible; display: inline-block; vertical-align: top; cursor: pointer; }
+.ke-button-outer { background-position: 0px -25px; padding: 0px; position: relative; display: inline-block; vertical-align: middle; }
+.ke-button { background-position: right -25px; padding: 0px 12px; margin: 0px; font-family: "sans serif",tahoma,verdana,helvetica; border: 0px none; color: rgb(51, 51, 51); font-size: 12px; left: 2px; text-decoration: none; }
+.ke-input-text { background-color: rgb(255, 255, 255); font-family: "sans serif",tahoma,verdana,helvetica; font-size: 12px; line-height: 17px; height: 17px; padding: 2px 4px; border-color: rgb(132, 132, 132) rgb(224, 224, 224) rgb(224, 224, 224) rgb(132, 132, 132); border-style: solid; border-width: 1px; display: inline-block; vertical-align: middle; }
+.ke-input-number { width: 50px; }
+.ke-input-color { border: 1px solid rgb(160, 160, 160); background-color: rgb(255, 255, 255); font-size: 12px; width: 60px; height: 20px; line-height: 20px; padding-left: 5px; overflow: hidden; cursor: pointer; display: inline-block; vertical-align: middle; }
+.ke-upload-button { position: relative; }
+.ke-upload-area { position: relative; overflow: hidden; margin: 0px; padding: 0px; }
+.ke-upload-area .ke-upload-file { position: absolute; top: 0px; right: 0px; height: 25px; padding: 0px; margin: 0px; z-index: 811212; border: 0px none; opacity: 0; }
+.ke-tabs { font: 12px/1 "sans serif",tahoma,verdana,helvetica; border-bottom: 1px solid rgb(160, 160, 160); padding-left: 5px; margin-bottom: 20px; }
+.ke-tabs-ul { list-style: outside none none; margin: 0px; padding: 0px; }
+.ke-tabs-li { position: relative; border: 1px solid rgb(160, 160, 160); background-color: rgb(240, 240, 238); margin: 0px 2px -1px 0px; padding: 0px 20px; float: left; line-height: 25px; text-align: center; color: rgb(85, 85, 85); cursor: pointer; }
+.ke-tabs-li-selected { background-color: rgb(255, 255, 255); border-bottom: 1px solid rgb(255, 255, 255); color: rgb(0, 0, 0); cursor: default; }
+.ke-tabs-li-on { background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); }
+.ke-progressbar { position: relative; margin: 0px; padding: 0px; }
+.ke-progressbar-bar { border: 1px solid rgb(111, 165, 219); width: 80px; height: 5px; margin: 10px 10px 0px; padding: 0px; }
+.ke-progressbar-bar-inner { width: 0px; height: 5px; background-color: rgb(111, 165, 219); overflow: hidden; margin: 0px; padding: 0px; }
+.ke-progressbar-percent { position: absolute; top: 0px; left: 40%; display: none; }
+.ke-swfupload-top { position: relative; margin-bottom: 10px; }
+.ke-swfupload-button { height: 23px; line-height: 23px; }
+.ke-swfupload-desc { padding: 0px 10px; height: 23px; line-height: 23px; }
+.ke-swfupload-startupload { position: absolute; top: 0px; right: 0px; }
+.ke-swfupload-body { overflow: scroll; background-color: rgb(255, 255, 255); border-color: rgb(132, 132, 132) rgb(224, 224, 224) rgb(224, 224, 224) rgb(132, 132, 132); border-style: solid; border-width: 1px; width: auto; height: 370px; padding: 5px; }
+.ke-swfupload-body .ke-item { width: 100px; margin: 5px; }
+.ke-swfupload-body .ke-photo { position: relative; border: 1px solid rgb(221, 221, 221); background-color: rgb(255, 255, 255); padding: 10px; }
+.ke-swfupload-body .ke-delete { display: block; background: rgba(0, 0, 0, 0) url("default.png") no-repeat scroll 0px -688px; width: 16px; height: 16px; position: absolute; right: 0px; top: 0px; cursor: pointer; }
+.ke-swfupload-body .ke-status { position: absolute; left: 0px; bottom: 5px; width: 100px; height: 17px; }
+.ke-swfupload-body .ke-message { width: 100px; text-align: center; overflow: hidden; height: 17px; }
+.ke-swfupload-body .ke-error { color: red; }
+.ke-swfupload-body .ke-name { width: 100px; text-align: center; overflow: hidden; height: 16px; }
+.ke-swfupload-body .ke-on { border: 1px solid rgb(86, 144, 210); background-color: rgb(233, 239, 246); }
+.ke-plugin-emoticons { position: relative; }
+.ke-plugin-emoticons .ke-preview { position: absolute; text-align: center; margin: 2px; padding: 10px; top: 0px; border: 1px solid rgb(160, 160, 160); background-color: rgb(255, 255, 255); display: none; }
+.ke-plugin-emoticons .ke-preview-img { border: 0px none; margin: 0px; padding: 0px; }
+.ke-plugin-emoticons .ke-table { border: 0px none; margin: 0px; padding: 0px; border-collapse: separate; }
+.ke-plugin-emoticons .ke-cell { margin: 0px; padding: 1px; border: 1px solid rgb(240, 240, 238); cursor: pointer; }
+.ke-plugin-emoticons .ke-on { border: 1px solid rgb(86, 144, 210); background-color: rgb(233, 239, 246); }
+.ke-plugin-emoticons .ke-img { display: block; background-repeat: no-repeat; overflow: hidden; width: 24px; height: 24px; margin: 0px; padding: 0px; border: 0px none; }
+.ke-plugin-emoticons .ke-page { text-align: right; margin: 5px; padding: 0px; border: 0px none; font: 12px/1 "sans serif",tahoma,verdana,helvetica; color: rgb(51, 51, 51); text-decoration: none; }
+.ke-plugin-plainpaste-textarea, .ke-plugin-wordpaste-iframe { display: block; width: 408px; height: 260px; font-family: "sans serif",tahoma,verdana,helvetica; font-size: 12px; border-color: rgb(132, 132, 132) rgb(224, 224, 224) rgb(224, 224, 224) rgb(132, 132, 132); border-style: solid; border-width: 1px; }
+.ke-plugin-filemanager-header { width: 100%; margin-bottom: 10px; }
+.ke-plugin-filemanager-header .ke-left { float: left; }
+.ke-plugin-filemanager-header .ke-right { float: right; }
+.ke-plugin-filemanager-body { overflow: scroll; background-color: rgb(255, 255, 255); border-color: rgb(132, 132, 132) rgb(224, 224, 224) rgb(224, 224, 224) rgb(132, 132, 132); border-style: solid; border-width: 1px; width: auto; height: 370px; padding: 5px; }
+.ke-plugin-filemanager-body .ke-item { width: 100px; margin: 5px; }
+.ke-plugin-filemanager-body .ke-photo { border: 1px solid rgb(221, 221, 221); background-color: rgb(255, 255, 255); padding: 10px; }
+.ke-plugin-filemanager-body .ke-name { width: 100px; text-align: center; overflow: hidden; height: 16px; }
+.ke-plugin-filemanager-body .ke-on { border: 1px solid rgb(86, 144, 210); background-color: rgb(233, 239, 246); }
+.ke-plugin-filemanager-body .ke-table { width: 95%; border: 0px none; margin: 0px; padding: 0px; border-collapse: separate; }
+.ke-plugin-filemanager-body .ke-table .ke-cell { margin: 0px; padding: 0px; border: 0px none; }
+.ke-plugin-filemanager-body .ke-table .ke-name { width: 55%; text-align: left; }
+.ke-plugin-filemanager-body .ke-table .ke-size { width: 15%; text-align: left; }
+.ke-plugin-filemanager-body .ke-table .ke-datetime { width: 30%; text-align: center; }
+.ke-plugin-template .ke-header { width: 100%; margin-bottom: 10px; }
+.ke-plugin-template label { margin-right: 0px; cursor: pointer; font-weight: normal; display: inline; vertical-align: top; }
+.ke-plugin-template .ke-left { float: left; }
+.ke-plugin-template .ke-right { float: right; }
